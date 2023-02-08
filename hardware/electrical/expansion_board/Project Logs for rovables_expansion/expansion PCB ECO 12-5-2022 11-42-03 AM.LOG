@@ -1,0 +1,181 @@
+Change Component Footprint: Designator=P? Old Footprint=61300411121 New Footprint=SLIN-GRPB041VWVN-RC_V
+Change Component Footprint: Designator=P? Old Footprint=61300411121 New Footprint=SLIN-GRPB041VWVN-RC_V
+Change Component Footprint: Designator=P? Old Footprint=61300411121 New Footprint=SLIN-GRPB041VWVN-RC_V
+Change Component Footprint: Designator=P? Old Footprint=61300411121 New Footprint=SLIN-GRPB041VWVN-RC_V
+Change Component Footprint: Designator=P? Old Footprint=61300411121 New Footprint=SLIN-GRPB041VWVN-RC_V
+Change Component Comment : Designator=P? Old Comment=61300411121 New Comment=GRPB041VWVN-RC
+Change Component Comment : Designator=P? Old Comment=61300411121 New Comment=GRPB041VWVN-RC
+Change Component Comment : Designator=P? Old Comment=61300411121 New Comment=GRPB041VWVN-RC
+Change Component Comment : Designator=P? Old Comment=61300411121 New Comment=GRPB041VWVN-RC
+Change Component Comment : Designator=P? Old Comment=61300411121 New Comment=GRPB041VWVN-RC
+Change Managed Component Library Link : Designator=P? Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 Old ItemGUID=6366F00F-2F5E-49CA-A393-A6C3EB69613C New ItemGUID=5338FD11-61D6-4FE6-A522-8579E1E52019 Old RevisionGUID=9D57D15A-6CA0-4DD7-B512-9BDDA0A5D642 New RevisionGUID=43F3A04B-91EC-40B9-9042-1FF6BD626C80
+Change Managed Component Library Link : Designator=P? Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 Old ItemGUID=6366F00F-2F5E-49CA-A393-A6C3EB69613C New ItemGUID=5338FD11-61D6-4FE6-A522-8579E1E52019 Old RevisionGUID=9D57D15A-6CA0-4DD7-B512-9BDDA0A5D642 New RevisionGUID=43F3A04B-91EC-40B9-9042-1FF6BD626C80
+Change Managed Component Library Link : Designator=P? Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 Old ItemGUID=6366F00F-2F5E-49CA-A393-A6C3EB69613C New ItemGUID=5338FD11-61D6-4FE6-A522-8579E1E52019 Old RevisionGUID=9D57D15A-6CA0-4DD7-B512-9BDDA0A5D642 New RevisionGUID=43F3A04B-91EC-40B9-9042-1FF6BD626C80
+Change Managed Component Library Link : Designator=P? Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 Old ItemGUID=6366F00F-2F5E-49CA-A393-A6C3EB69613C New ItemGUID=5338FD11-61D6-4FE6-A522-8579E1E52019 Old RevisionGUID=9D57D15A-6CA0-4DD7-B512-9BDDA0A5D642 New RevisionGUID=43F3A04B-91EC-40B9-9042-1FF6BD626C80
+Change Managed Component Library Link : Designator=P? Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 Old ItemGUID=6366F00F-2F5E-49CA-A393-A6C3EB69613C New ItemGUID=5338FD11-61D6-4FE6-A522-8579E1E52019 Old RevisionGUID=9D57D15A-6CA0-4DD7-B512-9BDDA0A5D642 New RevisionGUID=43F3A04B-91EC-40B9-9042-1FF6BD626C80
+Change component parameters: Designator = "P?" ("P?"); Footprint = "61300411121"; UniqueID = "\HXPNKZIT" ("\HXPNKZIT")
+Change component parameters (AddParameter): Name = "Catalog Drawings"; Value = "S9014ESeriesTop"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Category"; Value = "Connectors,Interconnects"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Connector Type"; Value = "Header,Unshrouded"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Finish"; Value = "Gold"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Finish Thickness"; Value = "Flash"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Mating Length"; Value = "0.118"(3.00mm)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Type"; Value = "MalePin"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet URL"; Value = "http://www.sullinscorp.com/drawings/71_GRPB___1VWVN-RC,_10957-C.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet Version"; Value = "Rev. C, 12/2008"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Dynamic Catalog"; Value = "GRPB"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Family"; Value = "RectangularConnectors-Headers,MalePins"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Sullins"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer URL"; Value = "http://www.sullinscorp.com/"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mating Products"; Value = "S9010E-04-ND
+-CONNHEADER.050"4POSR/APCB
+S9008E-04-ND
+-CONNHEADER.050"4POSPCBGOLD
+S9005E-04-ND
+-CONNHEADER.050"4POSSMDGOLD"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mounting Technology"; Value = "ThroughHole"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mounting Type"; Value = "ThroughHole"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Positions"; Value = "4"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Positions Loaded"; Value = "All"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Rows"; Value = "1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Other Names"; Value = "S9014E-04"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package Description"; Value = "Male Header, Pitch 1.27 mm, 1 x 4 Position, Height 4 mm, Tail Length 2.3 mm"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package Reference"; Value = "GRPB041VWVN-RC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Packaging"; Value = "Bulk"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Pitch"; Value = "0.050"(1.27mm)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Standard Package"; Value = "1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Termination"; Value = "Solder"; VariantName = "[No Variations]"
+Change component parameters: Designator = "P?" ("P?"); Footprint = "61300411121"; UniqueID = "\YRZIUQGX" ("\YRZIUQGX")
+Change component parameters (AddParameter): Name = "Catalog Drawings"; Value = "S9014ESeriesTop"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Category"; Value = "Connectors,Interconnects"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Connector Type"; Value = "Header,Unshrouded"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Finish"; Value = "Gold"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Finish Thickness"; Value = "Flash"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Mating Length"; Value = "0.118"(3.00mm)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Type"; Value = "MalePin"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet URL"; Value = "http://www.sullinscorp.com/drawings/71_GRPB___1VWVN-RC,_10957-C.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet Version"; Value = "Rev. C, 12/2008"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Dynamic Catalog"; Value = "GRPB"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Family"; Value = "RectangularConnectors-Headers,MalePins"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Sullins"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer URL"; Value = "http://www.sullinscorp.com/"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mating Products"; Value = "S9010E-04-ND
+-CONNHEADER.050"4POSR/APCB
+S9008E-04-ND
+-CONNHEADER.050"4POSPCBGOLD
+S9005E-04-ND
+-CONNHEADER.050"4POSSMDGOLD"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mounting Technology"; Value = "ThroughHole"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mounting Type"; Value = "ThroughHole"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Positions"; Value = "4"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Positions Loaded"; Value = "All"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Rows"; Value = "1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Other Names"; Value = "S9014E-04"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package Description"; Value = "Male Header, Pitch 1.27 mm, 1 x 4 Position, Height 4 mm, Tail Length 2.3 mm"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package Reference"; Value = "GRPB041VWVN-RC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Packaging"; Value = "Bulk"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Pitch"; Value = "0.050"(1.27mm)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Standard Package"; Value = "1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Termination"; Value = "Solder"; VariantName = "[No Variations]"
+Change component parameters: Designator = "P?" ("P?"); Footprint = "61300411121"; UniqueID = "\NROPVNVT" ("\NROPVNVT")
+Change component parameters (AddParameter): Name = "Catalog Drawings"; Value = "S9014ESeriesTop"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Category"; Value = "Connectors,Interconnects"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Connector Type"; Value = "Header,Unshrouded"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Finish"; Value = "Gold"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Finish Thickness"; Value = "Flash"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Mating Length"; Value = "0.118"(3.00mm)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Type"; Value = "MalePin"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet URL"; Value = "http://www.sullinscorp.com/drawings/71_GRPB___1VWVN-RC,_10957-C.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet Version"; Value = "Rev. C, 12/2008"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Dynamic Catalog"; Value = "GRPB"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Family"; Value = "RectangularConnectors-Headers,MalePins"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Sullins"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer URL"; Value = "http://www.sullinscorp.com/"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mating Products"; Value = "S9010E-04-ND
+-CONNHEADER.050"4POSR/APCB
+S9008E-04-ND
+-CONNHEADER.050"4POSPCBGOLD
+S9005E-04-ND
+-CONNHEADER.050"4POSSMDGOLD"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mounting Technology"; Value = "ThroughHole"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mounting Type"; Value = "ThroughHole"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Positions"; Value = "4"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Positions Loaded"; Value = "All"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Rows"; Value = "1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Other Names"; Value = "S9014E-04"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package Description"; Value = "Male Header, Pitch 1.27 mm, 1 x 4 Position, Height 4 mm, Tail Length 2.3 mm"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package Reference"; Value = "GRPB041VWVN-RC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Packaging"; Value = "Bulk"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Pitch"; Value = "0.050"(1.27mm)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Standard Package"; Value = "1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Termination"; Value = "Solder"; VariantName = "[No Variations]"
+Change component parameters: Designator = "P?" ("P?"); Footprint = "61300411121"; UniqueID = "\FIGRYQSB" ("\FIGRYQSB")
+Change component parameters (AddParameter): Name = "Catalog Drawings"; Value = "S9014ESeriesTop"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Category"; Value = "Connectors,Interconnects"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Connector Type"; Value = "Header,Unshrouded"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Finish"; Value = "Gold"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Finish Thickness"; Value = "Flash"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Mating Length"; Value = "0.118"(3.00mm)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Type"; Value = "MalePin"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet URL"; Value = "http://www.sullinscorp.com/drawings/71_GRPB___1VWVN-RC,_10957-C.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet Version"; Value = "Rev. C, 12/2008"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Dynamic Catalog"; Value = "GRPB"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Family"; Value = "RectangularConnectors-Headers,MalePins"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Sullins"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer URL"; Value = "http://www.sullinscorp.com/"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mating Products"; Value = "S9010E-04-ND
+-CONNHEADER.050"4POSR/APCB
+S9008E-04-ND
+-CONNHEADER.050"4POSPCBGOLD
+S9005E-04-ND
+-CONNHEADER.050"4POSSMDGOLD"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mounting Technology"; Value = "ThroughHole"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mounting Type"; Value = "ThroughHole"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Positions"; Value = "4"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Positions Loaded"; Value = "All"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Rows"; Value = "1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Other Names"; Value = "S9014E-04"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package Description"; Value = "Male Header, Pitch 1.27 mm, 1 x 4 Position, Height 4 mm, Tail Length 2.3 mm"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package Reference"; Value = "GRPB041VWVN-RC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Packaging"; Value = "Bulk"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Pitch"; Value = "0.050"(1.27mm)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Standard Package"; Value = "1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Termination"; Value = "Solder"; VariantName = "[No Variations]"
+Change component parameters: Designator = "P?" ("P?"); Footprint = "61300411121"; UniqueID = "\YWYVOSII" ("\YWYVOSII")
+Change component parameters (AddParameter): Name = "Catalog Drawings"; Value = "S9014ESeriesTop"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Category"; Value = "Connectors,Interconnects"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Connector Type"; Value = "Header,Unshrouded"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Finish"; Value = "Gold"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Finish Thickness"; Value = "Flash"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Mating Length"; Value = "0.118"(3.00mm)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Type"; Value = "MalePin"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet URL"; Value = "http://www.sullinscorp.com/drawings/71_GRPB___1VWVN-RC,_10957-C.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet Version"; Value = "Rev. C, 12/2008"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Dynamic Catalog"; Value = "GRPB"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Family"; Value = "RectangularConnectors-Headers,MalePins"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Sullins"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer URL"; Value = "http://www.sullinscorp.com/"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mating Products"; Value = "S9010E-04-ND
+-CONNHEADER.050"4POSR/APCB
+S9008E-04-ND
+-CONNHEADER.050"4POSPCBGOLD
+S9005E-04-ND
+-CONNHEADER.050"4POSSMDGOLD"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mounting Technology"; Value = "ThroughHole"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mounting Type"; Value = "ThroughHole"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Positions"; Value = "4"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Positions Loaded"; Value = "All"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Rows"; Value = "1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Other Names"; Value = "S9014E-04"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package Description"; Value = "Male Header, Pitch 1.27 mm, 1 x 4 Position, Height 4 mm, Tail Length 2.3 mm"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package Reference"; Value = "GRPB041VWVN-RC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Packaging"; Value = "Bulk"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Pitch"; Value = "0.050"(1.27mm)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Standard Package"; Value = "1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Termination"; Value = "Solder"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=expansion Member=Component P? GRPB041VWVN-RC
+Added Member To Class: ClassName=expansion Member=Component P? CONN HEADER 20POS
+Added Member To Class: ClassName=expansion Member=Component P? GRPB041VWVN-RC
+Added Member To Class: ClassName=expansion Member=Component P? GRPB041VWVN-RC
+Added Member To Class: ClassName=expansion Member=Component P? GRPB041VWVN-RC
+Added Member To Class: ClassName=expansion Member=Component P? GRPB041VWVN-RC

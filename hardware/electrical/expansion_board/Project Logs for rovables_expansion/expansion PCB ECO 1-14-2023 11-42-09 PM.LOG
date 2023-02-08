@@ -1,0 +1,9 @@
+Change Physical Footprint: Designator=J1 Old Footprint=HRS_DF12NB(3.0)-20DS-0.5V(51) New Footprint=HRS_DF12NB(3.0)-20DS-0.5V(51)
+Change Physical Footprint: Designator=P1 Old Footprint=vertical_4pos_conn _s_square New Footprint=vertical_4pos_conn _s_square
+Change Physical Footprint: Designator=P2 Old Footprint=vertical_4pos_conn _s_square New Footprint=vertical_4pos_conn _s_square
+Change Physical Footprint: Designator=P3 Old Footprint=vertical_4pos_conn _s_square New Footprint=vertical_4pos_conn _s_square
+Change Physical Footprint: Designator=P4 Old Footprint=vertical_4pos_conn _s_square New Footprint=vertical_4pos_conn _s_square
+Change Physical Footprint: Designator=P5 Old Footprint=vertical_4pos_conn _s_square New Footprint=vertical_4pos_conn _s_square
+Change Physical Footprint: Designator=P6 Old Footprint=4pos_conn_tof New Footprint=4pos_conn_tof
+Change Physical Footprint: Designator=R1 Old Footprint=RESC1609X55X30LL15T15 New Footprint=RESC1609X55X30LL15T15
+Change Physical Footprint: Designator=R2 Old Footprint=RESC1609X55X30LL15T15 New Footprint=RESC1609X55X30LL15T15

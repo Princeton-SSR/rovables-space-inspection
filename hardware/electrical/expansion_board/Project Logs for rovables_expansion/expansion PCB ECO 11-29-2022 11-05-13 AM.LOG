@@ -1,0 +1,18 @@
+Add Component: Footprint Not Found DF12 20 POS
+Add Pin To Net: Unknown Pin: Pin P?-1
+Add Pin To Net: Unknown Pin: Pin P?-2
+Add Pin To Net: Unknown Pin: Pin P?-3
+Add Pin To Net: Unknown Pin: Pin P?-5
+Add Pin To Net: Unknown Pin: Pin P?-7
+Add Pin To Net: Unknown Pin: Pin P?-9
+Add Pin To Net: Unknown Pin: Pin P?-11
+Add Pin To Net: Unknown Pin: Pin P?-20
+Added Member To Class: ClassName=tof1 Member=Component C?_tof1 (C?) C0402C104K8PACTU
+Added Member To Class: ClassName=tof2 Member=Component C?_tof2 (C?) C0402C104K8PACTU
+Added Member To Class: ClassName=tof3 Member=Component C?_tof3 (C?) C0402C104K8PACTU
+Added Member To Class: ClassName=tof4 Member=Component C?_tof4 (C?) C0402C104K8PACTU
+Added Member To Class: ClassName=tof5 Member=Component C?_tof5 (C?) C0402C104K8PACTU
+Added Member To Class: ClassName=tof6 Member=Component C?_tof6 (C?) C0402C104K8PACTU
+Added Member To Class: ClassName=tof7 Member=Component C?_tof7 (C?) C0402C104K8PACTU
+Added Member To Class: ClassName=tof8 Member=Component C?_tof8 (C?) C0402C104K8PACTU
+Add Class Member: Failed to add class member : Component P? CONN HEADER 20POS
