@@ -1,0 +1,66 @@
+(Japanese_coding: sjis)
+(function "ECS_1936775"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2020-11-30-10:47:30)
+    (utime 2020-12-01-06:26:25)
+    (interface
+        (port "1" (symbPinId 1) (portType INOUT))
+        (port "2" (symbPinId 2) (portType INOUT))
+    )
+    (property "symbolName" "150040GS73220")
+)
+
+
+(pinAssign "ECS_1936775"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2020-11-30-10:47:30)
+    (utime 2020-12-01-06:26:25)
+    (interface
+        (port "1" (symbPinId 1) (portName "K") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "A") (portType INOUT))
+    )
+    (internal
+        (funcInst (functionRef "ECS_1936775")
+                (port "1" (match "1"))
+                (port "2" (match "2"))
+        )
+    )
+    (property "usePowerBox" "No")
+    (property "symbolName" "150040GS73220")
+)
+
+
+(part "150040GS73220"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2020-11-30-10:47:30)
+    (utime 2020-12-01-06:26:25)
+    (packageRef "150040GS73220")
+    (pinAssignRef "ECS_1936775")
+    (interface
+        (port "1" (symbPinId 1) (portName "K") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "A") (portType INOUT))
+    )
+    (partClass UNDEF)
+    (useInSchema Y)
+    (useInLayout Y)
+    (inPartsList Y)
+    (partType NORMAL)
+    (placeRestriction FREE)
+    (property "enetNonSeries" "YES")
+    (property "refDesPrefix" "LED")
+    (property "description" "WURTH ELEKTRONIK - 150040GS73220 - LED, Green, SMD, 0402, Rectangular, 3.3V/20mA Forward, 525nm, 750mcd, 120 Viewing Angle")
+    (property "Mouser_Part_Number" "710-150040GS73220")
+    (property "Mouser_Price/Stock" "https://www.mouser.co.uk/ProductDetail/Wurth-Elektronik/150040GS73220?qs=u16ybLDytRZ9vktXLUK1Kg%3D%3D")
+    (property "Manufacturer_Name" "Wurth Elektronik")
+    (property "Manufacturer_Part_Number" "150040GS73220")
+    (property "Datasheet_Link" "")
+    (property "compAreaTopHeight" 0.35)
+)
+
+

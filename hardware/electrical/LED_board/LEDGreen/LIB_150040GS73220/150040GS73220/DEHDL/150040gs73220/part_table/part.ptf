@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART '150040GS73220'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Wurth Elektronik", "150040GS73220" (!) = "", "150040GS73220", "Other", "710-150040GS73220", "https://www.mouser.co.uk/ProductDetail/Wurth-Elektronik/150040GS73220?qs=u16ybLDytRZ9vktXLUK1Kg%3D%3D", "WURTH ELEKTRONIK - 150040GS73220 - LED, Green, SMD, 0402, Rectangular, 3.3V/20mA Forward, 525nm, 750mcd, 120 Viewing Angle", "", "0.35 mm"
+END_PART
+
+END.

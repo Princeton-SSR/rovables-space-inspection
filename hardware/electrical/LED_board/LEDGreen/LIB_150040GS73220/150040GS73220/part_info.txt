@@ -1,0 +1,9 @@
+Manufacturer=Würth Elektronik
+PartNumber=150040GS73220
+PartCategory=LED
+PackageCategory=Other
+PinCount=2
+Version=1.2
+Released=2020-11-30 10:47:30
+Downloaded=2023-02-10 20:05:37
+3D=Y
