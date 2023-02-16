@@ -1,0 +1,7 @@
+Added Component: Designator=P7(4pos_conn_tof_s)
+Added Pin To Net: NetName=VCC Pin=P7-1
+Added Pin To Net: NetName=GND Pin=P7-2
+Added Pin To Net: NetName=SDA Pin=P7-3
+Added Pin To Net: NetName=SCL Pin=P7-4
+Added Member To Class: ClassName=expansion Member=Component J1 DF12NB(3.0)-20DS-0.5V(51)
+Added Member To Class: ClassName=expansion Member=Component P7 vertical_4pos_conn

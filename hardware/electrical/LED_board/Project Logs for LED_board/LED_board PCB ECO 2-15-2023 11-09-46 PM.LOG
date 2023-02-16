@@ -1,0 +1,28 @@
+Added Component: Designator=LED6(LSM0603463V)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "LSM0603463V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/lsm0603463v/visual-communications"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://vcclite.com/wp-content/uploads/wpallimport/files/files/LSM0603463V.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height"; Value = "0.5mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Visual Communications Company"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "LSM0603463V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "593-LSM0603463V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/VCC/LSM0603463V?qs=%252BEew9%252B0nqrDuPtH0dpM5ug%3D%3D"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Testing Part Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Testing Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=LED7(LSM0603463V)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "LSM0603463V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/lsm0603463v/visual-communications"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://vcclite.com/wp-content/uploads/wpallimport/files/files/LSM0603463V.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height"; Value = "0.5mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Visual Communications Company"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "LSM0603463V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "593-LSM0603463V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/VCC/LSM0603463V?qs=%252BEew9%252B0nqrDuPtH0dpM5ug%3D%3D"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Testing Part Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Testing Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetLED1_1 Pin=LED6-1
+Added Pin To Net: NetName=VDD Pin=LED6-2
+Added Pin To Net: NetName=NetLED1_1 Pin=LED7-1
+Added Pin To Net: NetName=VDD Pin=LED7-2
+Added Member To Class: ClassName=LED_board Member=Component LED6 LSM0603463V
+Added Member To Class: ClassName=LED_board Member=Component LED7 LSM0603463V

@@ -1,0 +1,10 @@
+Added Component: Designator=P1(vertical_4pos_conn)
+Added Component: Designator=P2(vertical_4pos_conn)
+Added Component: Designator=P3(vertical_4pos_conn)
+Added Component: Designator=P4(vertical_4pos_conn)
+Added Component: Designator=P5(vertical_4pos_conn _s)
+Added Member To Class: ClassName=expansion Member=Component P1 vertical_4pos_conn
+Added Member To Class: ClassName=expansion Member=Component P2 vertical_4pos_conn
+Added Member To Class: ClassName=expansion Member=Component P3 vertical_4pos_conn
+Added Member To Class: ClassName=expansion Member=Component P4 vertical_4pos_conn
+Added Member To Class: ClassName=expansion Member=Component P5 vertical_4pos_conn

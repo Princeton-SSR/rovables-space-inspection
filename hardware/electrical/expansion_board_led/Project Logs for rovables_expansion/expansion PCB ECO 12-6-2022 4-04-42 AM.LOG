@@ -1,0 +1,16 @@
+Removed Pin From Net: NetName=5V Pin=P1-2
+Removed Pin From Net: NetName=SWCLK Pin=P1-3
+Removed Pin From Net: NetName=SWDIO Pin=P1-5
+Removed Pin From Net: NetName=SDA Pin=P1-7
+Removed Pin From Net: NetName=SCL Pin=P1-9
+Removed Pin From Net: NetName=VCC Pin=P1-11
+Removed Pin From Net: NetName=GND Pin=P1-20
+Added Pin To Net: NetName=VCC Pin=P1-10
+Added Pin To Net: NetName=SCL Pin=P1-12
+Added Pin To Net: NetName=SDA Pin=P1-14
+Added Pin To Net: NetName=SWDIO Pin=P1-16
+Added Pin To Net: NetName=SWCLK Pin=P1-18
+Added Pin To Net: NetName=5V Pin=P1-19
+Change Net Name : Old Net Name=RESET New Net Name=GND
+Added Pin To Net: NetName=RESET Pin=P1-20
+Added Net: Name=RESET

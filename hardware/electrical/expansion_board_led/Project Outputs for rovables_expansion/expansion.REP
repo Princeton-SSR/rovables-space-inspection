@@ -1,0 +1,171 @@
+*************************************************************
+FileName = expansion.GBR
+AutoAperture = True
+*************************************************************
+Generating : Keep-Out Layer
+      File : expansion.GKO
+
+    Adding Layer      : Keep-Out Layer
+
+
+Used DCodes :
+*************************************************************
+
+*************************************************************
+Generating : Top Solder
+      File : expansion.GTS
+
+    Adding Layer      : Top Solder
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D12
+    D13
+    D14
+    D15
+    D16
+    D17
+    D18
+    D19
+    D20
+    D21
+*************************************************************
+
+*************************************************************
+Generating : Bottom Overlay
+      File : expansion.GBO
+
+    Adding Layer      : Bottom Overlay
+
+
+Used DCodes :
+    D22
+    D41
+*************************************************************
+
+*************************************************************
+Generating : Bottom Layer
+      File : expansion.GBL
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D22
+    D24
+    D25
+    D26
+    D27
+    D28
+    D29
+    D30
+    D31
+    D32
+    D33
+    D34
+    D35
+    D36
+    D37
+*************************************************************
+
+*************************************************************
+Generating : Mechanical 4
+      File : expansion.GM4
+
+    Adding Layer      : Mechanical 4
+
+
+Used DCodes :
+    D22
+*************************************************************
+
+*************************************************************
+Generating : Mechanical 1
+      File : expansion.GM1
+
+    Adding Layer      : Mechanical 1
+
+
+Used DCodes :
+    D42
+    D43
+*************************************************************
+
+*************************************************************
+Generating : Bottom Solder
+      File : expansion.GBS
+
+    Adding Layer      : Bottom Solder
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D13
+    D14
+    D15
+    D16
+    D17
+    D18
+    D19
+    D20
+    D21
+    D38
+    D39
+    D40
+*************************************************************
+
+*************************************************************
+Generating : Profile
+      File : expansion.GM
+
+
+Used DCodes :
+    D44
+*************************************************************
+
+*************************************************************
+Generating : Top Layer
+      File : expansion.GTL
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D22
+    D23
+    D24
+    D25
+    D26
+    D27
+    D28
+    D29
+    D30
+    D31
+    D32
+    D33
+    D34
+*************************************************************
+
+*************************************************************
+Generating : Top Overlay
+      File : expansion.GTO
+
+    Adding Layer      : Top Overlay
+
+
+Used DCodes :
+    D10
+    D11
+*************************************************************
+

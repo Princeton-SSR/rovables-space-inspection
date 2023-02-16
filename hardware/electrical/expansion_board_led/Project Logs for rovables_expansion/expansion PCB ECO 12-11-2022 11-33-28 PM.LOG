@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=VCC Pin=P5-1
+Removed Pin From Net: NetName=GND Pin=P5-2
+Removed Pin From Net: NetName=SDA Pin=P5-3
+Removed Pin From Net: NetName=SCL Pin=P5-4
+Removed Member From Class: ClassName=expansion Member=P5

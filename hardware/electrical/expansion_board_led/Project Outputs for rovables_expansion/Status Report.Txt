@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [rovables_expansion.PrjPcb]
+   Generated File[expansion.TXT]
+   Generated File[expansion.LDP]
+   Generated File[expansion.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 12:43:41 AM On 1/15/2023

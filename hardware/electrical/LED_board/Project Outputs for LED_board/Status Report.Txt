@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [LED_board.PrjPcb]
+   Generated File[LED_board.TXT]
+   Generated File[LED_board.LDP]
+   Generated File[LED_board.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 12:08:14 PM On 2/16/2023
