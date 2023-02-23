@@ -18,18 +18,18 @@ struct message_accel {
 
 
 void setup(void) {
-  SerialUSB.begin(115200);
-  while (!SerialUSB) {
+  Serial.begin(115200);
+  while (!Serial) {
     // some boards need this because of native USB capability
   }
 //  while (SerialUSB.read() != 'y') // Wait until receive start from Serial
 //  {
 //     //don't do anything
 //  }
-  SerialUSB.println("Starting Bayes Station");
+  Serial.println("Starting Bayes Station");
  
   if (!radio.begin()) {
-    SerialUSB.println(F("Radio hardware not responding!"));
+    Serial.println(F("Radio hardware not responding!"));
     while (1) {
       // hold in infinite loop
     }
@@ -55,14 +55,14 @@ void loop(void) {
     RF24NetworkHeader header;        // If so, grab it and print it out
     message_accel message;
     network.read(header, &message, sizeof(message_accel));
-    SerialUSB.print(message.x);
-    SerialUSB.print(",");
-    SerialUSB.print(message.y);
-    SerialUSB.print(",");
-    SerialUSB.println(message.z);
+    Serial.print(message.x);
+    Serial.print(",");
+    Serial.print(message.y);
+    Serial.print(",");
+    Serial.println(message.z);
   }
   else {
-    SerialUSB.println("No message found");
+    Serial.println("No message found");
     delay(1000);
   }
 }
