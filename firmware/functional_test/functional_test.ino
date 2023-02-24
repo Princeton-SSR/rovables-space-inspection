@@ -1,14 +1,7 @@
-#include <Arduino.h>
 #include <Adafruit_MPU6050.h>
 #include <Adafruit_Sensor.h>
-#include <RF24.h>
 #include <RF24Network.h>
-
-Adafruit_MPU6050 mpu;
-RF24 radio(2, 10);   // nRF24L01 (CE,CSN)  
-RF24Network network(radio);
-sensors_event_t a, g, temp;
-const uint16_t this_rov = 01; 
+#include <RF24.h>
 
 #define  M1_DIR   A2 
 #define  M1_PWM   9 
@@ -26,13 +19,17 @@ struct message_accel {
   double z;
 };
 
+const uint16_t this_rov = 01; 
+
+Adafruit_MPU6050 mpu;
+RF24 radio(2, 10);   // nRF24L01 (CE,CSN)
+RF24Network network(radio);
+sensors_event_t a, g, temp;
+
 void setup() {
   // put your setup code here, to run once:
   SerialUSB.begin(115200);
 
-//  while(!SerialUSB) {
-//    //wait for serial to connect
-//  }
   SerialUSB.println("Beginning Rovables Functional Check. . .");
 
 
@@ -57,18 +54,18 @@ void setup() {
     }  // hold in infinite loop
   }
 
-//  radio.setPALevel(RF24_PA_HIGH);
-//  radio.setChannel(100);
-  network.begin(90, this_rov);
-  
+  radio.setPALevel(RF24_PA_HIGH);
+  radio.setChannel(100);
+  network.begin(this_rov);
+
   SerialUSB.println("NRF24 Responsive!");
   SerialUSB.println("------------------------------------------");
 
-  SerialUSB.println("Turning Rovable Counter-clockwise!");
-  digitalWrite(M1_DIR, 0);
-  digitalWrite(M2_DIR, 0);  
-  analogWrite(M1_PWM, 75);
-  analogWrite(M2_PWM, 75);
+//  SerialUSB.println("Turning Rovable Counter-clockwise!");
+//  digitalWrite(M1_DIR, 0);
+//  digitalWrite(M2_DIR, 0);  
+//  analogWrite(M1_PWM, 75);
+//  analogWrite(M2_PWM, 75);
 
 }
 void loop() {
@@ -78,6 +75,7 @@ void loop() {
   message_accel message = {a.acceleration.x, a.acceleration.y, a.acceleration.z};
   if (network.write(header, &message, sizeof(message_accel))) {
     SerialUSB.println("Message Sent");
+    SerialUSB.println(message.x);
   } else {
     SerialUSB.println("Message Failed to Send!");
   }
