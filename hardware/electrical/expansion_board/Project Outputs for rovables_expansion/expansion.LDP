@@ -1,2 +1,2 @@
-Layer Pairs Export File for PCB: C:\Users\darre\Documents\rovables_expansion\expansion_board\expansion.PcbDoc
-LayersSetName=Top_Bot_Thru_Holes|DrillFile=expansion.txt|DrillLayers=gtl,gbl
+Layer Pairs Export File for PCB: C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc
+LayersSetName=Top_Bot_Thru_Holes|DrillFile=expansion.txt|DrillLayers=gtl,g1,g2,gbl

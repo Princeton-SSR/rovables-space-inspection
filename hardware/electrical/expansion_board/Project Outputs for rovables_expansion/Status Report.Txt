@@ -1,12 +1,10 @@
-Output: NC Drill Files
-Type  : NC Drill
-From  : Project [rovables_expansion.PrjPcb]
-   Generated File[expansion.TXT]
-   Generated File[expansion.LDP]
-   Generated File[expansion.DRR]
+Output: Generates pick and place files
+Type  : Pick Place
+From  : Variant [[No Variations]] of Project [rovables_expansion.PrjPcb]
+   Generated File[Pick Place for expansion.csv]
 
 
-Files Generated   : 3
+Files Generated   : 1
 Documents Printed : 0
 
-Finished Output Generation At 12:43:41 AM On 1/15/2023
+Finished Output Generation At 1:58:15 AM On 3/21/2023
