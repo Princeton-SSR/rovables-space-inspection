@@ -1,26 +1,14 @@
-Altium Designer Pick and Place Locations
-C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\Project Outputs for rovables_expansion\Pick Place for expansion.csv
-
-========================================================================================================================
-File Design Information:
-
-Date:       21/03/23
-Time:       01:58
-Revision:   6a49daa89e2381307d79b59489f1d121050a4ff7
-Variant:    No variations
-Units used: mm
-
-"Designator","Footprint","Center-X(mm)","Center-Y(mm)","Ref-X(mm)","Ref-Y(mm)","Pad-X(mm)","Pad-Y(mm)","Layer","Rotation","Comment","Description"
-"P10","BB_WIRE_TEST_TH","91.5670","39.4970","91.5670","39.4970","91.5670","39.4970","TopLayer","90","BB_TEST_TH",""
-"P9","BB_WIRE_TEST_TH","89.5096","41.2242","89.5096","41.2242","89.5096","41.2242","TopLayer","0","BB_TEST_TH",""
-"P8","BB_WIRE_TEST_TH","91.5670","41.1988","91.5670","41.1988","91.5670","41.1988","TopLayer","0","BB_TEST_TH",""
-"P7","BB_WIRE_TEST_TH","89.4588","39.4716","89.4588","39.4716","89.4588","39.4716","TopLayer","0","BB_TEST_TH",""
-"P2","vertical_4pos_conn__s_square","80.8462","51.6205","82.6138","52.5574","82.4960","52.9969","TopLayer","285","vertical_4pos_conn",""
-"P5","vertical_4pos_conn__s_square","96.9145","46.1620","97.3620","44.2122","97.8170","44.2122","TopLayer","180","vertical_4pos_conn",""
-"P4","vertical_4pos_conn__s_square","94.1699","51.6113","96.1693","51.5389","96.2871","51.9784","TopLayer","255","vertical_4pos_conn",""
-"P3","vertical_4pos_conn__s_square","87.4882","50.8643","89.4380","51.3118","89.4380","51.7668","TopLayer","270","vertical_4pos_conn",""
-"P1","vertical_4pos_conn__s_square","78.0153","46.1116","77.5678","48.0614","77.1128","48.0614","TopLayer","0","vertical_4pos_conn",""
-"P6","4pos_conn_tof","82.9564","46.0652","82.9564","48.0152","82.9564","48.0152","TopLayer","0","vertical_4pos_conn",""
-"J1","HRS_DF12NB(3.0)-20DS-0.5V(51)","83.5808","41.2208","83.5808","41.2208","81.3308","39.4208","BottomLayer","180","DF12NB(3.0)-20DS-0.5V(51)",""
-"R2","RESC1609X55X30LL15T15","86.7410","45.3644","86.7410","45.3644","87.3910","45.3644","BottomLayer","180","ERJ3EKF1002V","Chip Resistor, 10 KOhm, +/- 1%, 0.1 W, -55 to 155 degC, 0603 (1608 Metric), RoHS, Tape and Reel"
-"R1","RESC1609X55X30LL15T15","83.8962","45.3644","83.8962","45.3644","83.2462","45.3644","BottomLayer","0","ERJ3EKF1002V","Chip Resistor, 10 KOhm, +/- 1%, 0.1 W, -55 to 155 degC, 0603 (1608 Metric), RoHS, Tape and Reel"
+Designator,Mid X,Mid Y,Layer,Rotation
+P10,91.567,39.497,TopLayer,90
+P9,89.5096,41.2242,TopLayer,0
+P8,91.567,41.1988,TopLayer,0
+P7,89.4588,39.4716,TopLayer,0
+P2,80.8462,51.6205,TopLayer,285
+P5,96.9145,46.162,TopLayer,180
+P4,94.1699,51.6113,TopLayer,255
+P3,87.4882,50.8643,TopLayer,270
+P1,78.0153,46.1116,TopLayer,0
+P6,82.9564,46.0652,TopLayer,0
+J1,83.5808,41.2208,BottomLayer,180
+R2,86.741,45.3644,BottomLayer,180
+R1,83.8962,45.3644,BottomLayer,0

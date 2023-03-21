@@ -1,6 +1,6 @@
-Designator,Footprint,Mid X,Mid Y,Ref X,Ref Y,Pad X,Pad Y,Layer,Rotation,Comment,Description
-P1,4pos_conn_tof,"888,970","284,620","888,700","303,630","888,920","304,170",TopLayer,0,4pos_conn_tof,
-U1,QFN_BV0FY/1_STM,"919,480","287,020","919,480","287,020","927,480","303,022",TopLayer,270,VL53L1CBV0FY/1,No Description Available
-R1,FP-ERA3A-IPC_C,"958,850","271,780","958,850","271,780","958,850","278,037",TopLayer,270,ERA-3AEB103V,RES SMD 10K OHM 0.1% 1/10W 0603
-C2,FP-GRM155-0_1-IPC_B,"958,850","298,450","958,850","298,450","958,850","302,736",TopLayer,270,GRM155R60J475ME47D,"Chip Multilayer Ceramic Capacitors for General Purpose, 0402, 4.7uF, X5R, 15%, 20%, 6.3V"
-C1,FP-C0402-BB-MFG,"942,340","298,450","942,340","298,450","942,340","302,450",TopLayer,270,C0402C104K8PACTU,CAP CER 0.1UF 10V X5R 0402
+Designator,Mid X,Mid Y,Layer,Rotation
+P1,"888,970","284,620",TopLayer,0
+U1,"919,480","287,020",TopLayer,270
+R1,"958,850","271,780",TopLayer,270
+C2,"958,850","298,450",TopLayer,270
+C1,"942,340","298,450",TopLayer,270
