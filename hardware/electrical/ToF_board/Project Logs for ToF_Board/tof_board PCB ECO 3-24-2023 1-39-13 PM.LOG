@@ -1,0 +1,5 @@
+Change Component Designator: OldDesignator=R? NewDesignator=R1
+Change Component Designator: OldDesignator=R? NewDesignator=R2
+Change Net Name : Old Net Name=NetR?_1 New Net Name=NetR2_1
+Change Net Name : Old Net Name=NetR?_2 New Net Name=NetR1_2
+Added Member To Class: ClassName=tof_board Member=Component R1 ERA-2AEB103X

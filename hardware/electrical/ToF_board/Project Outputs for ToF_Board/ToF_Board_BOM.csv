@@ -1,5 +1,5 @@
-Description,Designator,Footprint,LCSC PART #
-CAP CER 0.1UF 10V X5R 0402,C1,0402_C,C141382
-"Chip Multilayer Ceramic Capacitors for General Purpose, 0402, 4.7uF, X5R, 15%, 20%, 6.3V",C2,0402_C,C106859
-RES SMD 10K OHM 0.1% 1/10W 0603,R1,0603_R,C216802
-No Description Available,U1,LGA-12(2.5x4.9),C190004
+Comment,Designator,Footprint,LCSC PART #
+CAP CER 0.1UF 10V X5R 0402,C1,FP-C0402-BB-MFG,C141382
+"Chip Multilayer Ceramic Capacitors for General Purpose, 0402, 4.7uF, X5R, 15%, 20%, 6.3V",C2,FP-GRM155-0_1-IPC_B,C106859
+RES SMD 10K OHM 0.1% 1/16W 0402,"R1, R2",FP-ERA2A-MFG,C176114
+No Description Available,U1,QFN_BV0FY/1_STM,C190004

@@ -1,5 +1,5 @@
 ------------------------------------------------------------------------------------------
-Gerber File Extension Report For: tof_panelization_10x.GBR   3/23/2023  2:26:31 AM
+Gerber File Extension Report For: tof_panelization_10x.GBR   3/28/2023  11:35:29 PM
 ------------------------------------------------------------------------------------------
 
 
@@ -14,6 +14,5 @@ Layer Extension     Layer Description
 .GBO                Bottom Overlay                          
 .GM1                Mechanical 1                            
 .GKO                Keep-Out Layer                          
-.GG1                Drill Guide                             
 .GM                 Profile                                 
 ------------------------------------------------------------------------------------------
