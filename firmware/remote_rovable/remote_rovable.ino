@@ -81,9 +81,18 @@ void loop() {
     if (message.dir == 71) {
       moveForward();
     }
-    if (message.dir == 67) {
+    if (message.dir == -16) {
       analogWrite(M1_PWM, 0);
       analogWrite(M2_PWM, 0);
+    }
+    if (message.dir == 49) {
+      turnLeft();
+    }
+    if (message.dir == 52) {
+      turnRight();
+    }
+    if (message.dir == 67) {
+      moveBackward();
     }
   } else {
     SerialUSB.println("Waiting for Packets on Network!");

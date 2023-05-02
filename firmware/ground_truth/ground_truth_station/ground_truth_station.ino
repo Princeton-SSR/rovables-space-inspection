@@ -35,10 +35,16 @@ void loop(void) {
     RF24NetworkHeader header;  // If so, grab it and print it out
     message_accel message;
     network.read(header, &message, sizeof(message_accel));
+
+    // message.x = sq(message.x);
+    // message.y = sq(message.y);
+    // message.z = sq(message.z - 9.84);
+
     SerialUSB.print(message.x);
     SerialUSB.print(",");
     SerialUSB.print(message.y);
     SerialUSB.print(",");
     SerialUSB.println(message.z);
+    delay(50);
   }
 }

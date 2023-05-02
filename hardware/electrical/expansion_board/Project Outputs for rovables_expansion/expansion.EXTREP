@@ -1,5 +1,5 @@
 ------------------------------------------------------------------------------------------
-Gerber File Extension Report For: expansion.GBR   3/21/2023  1:52:57 AM
+Gerber File Extension Report For: expansion.GBR   4/12/2023  1:09:56 AM
 ------------------------------------------------------------------------------------------
 
 
@@ -9,6 +9,8 @@ Layer Extension     Layer Description
 .GTO                Top Overlay                             
 .GTS                Top Solder                              
 .GTL                Top Layer                               
+.G1                 Layer SCL                               
+.G2                 Layer SDA                               
 .GBL                Bottom Layer                            
 .GBS                Bottom Solder                           
 .GBO                Bottom Overlay                          

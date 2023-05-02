@@ -1,0 +1,541 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD22\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">4/12/2023</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">1:03:07 AM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc" class="file"><acronym title="C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc">C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">63</td></tr>
+</table>
+</td>
+</table><a name="IDQ1FX2E2O3K0LIQAGV1DTGT4KQCXUZLRRYBMM0TCEGFZS454GWMLJ"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBEQ0ZOSMD44LMKRY0UKXPA5R5EAZ1H1VPU5TZKGARJDCG1S1ZNHE">Clearance Constraint (Gap=5mil) (All),(All)</a></td>
+<td class="column2">40</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNHVAY4Z3HIWWM0R0HN01BMGFYI0IW0N0DEBIMAKBZZFMOGUYFYTG">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJAWGQF1YOKJPILOLB44JYO5H1EFQ4VEQQQWWHNMFCTYMZGCQPU2C">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID1RR4Q1WLPGS2FTP3SBV21RIX3HHH1WXWKBOSL2KX1B0LYWXOWZKB">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTNXCIMU0KNMVHORHZ5KS1OIVXF4XQKESWP02IEIMVHBOT10RGA4M">Width Constraint (Min=5mil) (Max=1000mil) (Preferred=5mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPPKBKNJOUFURF5ZZVHC3ETKSFKYJXVR4VV4EYFD1VABZ5XJCUQ0J">Power Plane Connect Rule(Direct Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (InPadClass('PowerPads'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3N5AJ50CRW1PGYDW0V0NKEGM1C5MMCO2EPLAKOMIZ0YOJ5GXE20K">Power Plane Connect Rule(Direct Connect )(Expansion=11.811mil) (Conductor Width=5mil) (Air Gap=5mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDY1TGXHE1IPXGD30QQHJKXNIZVC010FKRVKOO1CHQC4BVMAVER1FL">Minimum Annular Ring (Minimum=3mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDHAE55IA2LDHMHRKJI3DHBD40KCGFYOVR0GEIOMEKAJ3EZJ1ODMF">Hole Size Constraint (Min=11.811mil) (Max=248.031mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQ3JOUBT4JHVSISG0BF3JW5GNMI2UDYRYYWN121KN51RAPH5LIG0D">Hole To Hole Clearance (Gap=9.842mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEUM3LSVIAALTLMERJUW4NMMFBPSVAH0QQLRFOFKOLPDXEVXCYNYG">Minimum Solder Mask Sliver (Gap=0mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDVHWLEJZQYWLRGO0SWJZNMFYM4GL0XLDMNNWDXCHXY1233LHHHN4B">Silk To Solder Mask (Clearance=5mil) (IsPad),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYZQZOPOJORLVDJMARAFFVEOM5DMO4CSNGJXQMIN4W4YU2HVS24LH">Silk to Silk (Clearance=0mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID014VAFWEZUZEMTSURGJ31V5YCHJ1MPF5RCAIKCKUXXOCSKYDXJHD">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZFB0F5Z0GGW5ID5S4J1ITMMRWL53OC1NMNSFDFX1CBJKIC3Q5OO">Board Clearance Constraint (Gap=0mil) (All)</a></td>
+<td class="column2">8</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTQKNRXHWCZGGLMAVOOHUJZWC4KWW1ZYJ5PV5SRL5JSLON1NCMUDB">Room expansion (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('expansion'))</a></td>
+<td class="column2">15</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID2ACX5RT4ZEV3M3HH4VG0DJSW3BNPYHQKH32GUQIIMOO300GLWXMO">Height Constraint (Min=0mil) (Max=71497.938mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">63</td>
+</tr>
+</table><br><a name="IDBEQ0ZOSMD44LMKRY0UKXPA5R5EAZ1H1VPU5TZKGARJDCG1S1ZNHE"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=5mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3250.658mil|Location2.X=3256.908mil|Location1.Y=3319.741mil|Location2.Y=3325.991mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3250.658mil|Location2.X=3256.908mil|Location1.Y=3319.741mil|Location2.Y=3325.991mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P1-1(3237.937mil,3303.181mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3290.127mil|Location2.X=3296.377mil|Location1.Y=3319.754mil|Location2.Y=3326.004mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3290.127mil|Location2.X=3296.377mil|Location1.Y=3319.754mil|Location2.Y=3326.004mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P1-1(3309mil,3303.194mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3250.658mil|Location2.X=3256.908mil|Location1.Y=3268.56mil|Location2.Y=3274.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3250.658mil|Location2.X=3256.908mil|Location1.Y=3268.56mil|Location2.Y=3274.81mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P1-2(3237.937mil,3252mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3290.127mil|Location2.X=3296.377mil|Location1.Y=3268.56mil|Location2.Y=3274.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3290.127mil|Location2.X=3296.377mil|Location1.Y=3268.56mil|Location2.Y=3274.81mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P1-2(3309mil,3252mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3250.658mil|Location2.X=3256.908mil|Location1.Y=3217.379mil|Location2.Y=3223.629mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3250.658mil|Location2.X=3256.908mil|Location1.Y=3217.379mil|Location2.Y=3223.629mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P1-3(3237.937mil,3200.819mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3290.127mil|Location2.X=3296.377mil|Location1.Y=3217.379mil|Location2.Y=3223.629mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3290.127mil|Location2.X=3296.377mil|Location1.Y=3217.379mil|Location2.Y=3223.629mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P1-3(3309mil,3200.819mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3250.658mil|Location2.X=3256.908mil|Location1.Y=3166.198mil|Location2.Y=3172.448mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3250.658mil|Location2.X=3256.908mil|Location1.Y=3166.198mil|Location2.Y=3172.448mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P1-4(3237.937mil,3149.638mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3290.127mil|Location2.X=3296.377mil|Location1.Y=3166.198mil|Location2.Y=3172.448mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3290.127mil|Location2.X=3296.377mil|Location1.Y=3166.198mil|Location2.Y=3172.448mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P1-4(3309mil,3149.638mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3469.865mil|Location2.X=3476.115mil|Location1.Y=3484.157mil|Location2.Y=3490.407mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3469.865mil|Location2.X=3476.115mil|Location1.Y=3484.157mil|Location2.Y=3490.407mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P2-1(3449.874mil,3497.493mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3480.092mil|Location2.X=3486.342mil|Location1.Y=3446.036mil|Location2.Y=3452.286mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3480.092mil|Location2.X=3486.342mil|Location1.Y=3446.036mil|Location2.Y=3452.286mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P2-1(3468.279mil,3428.855mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3420.428mil|Location2.X=3426.678mil|Location1.Y=3470.91mil|Location2.Y=3477.16mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3420.428mil|Location2.X=3426.678mil|Location1.Y=3470.91mil|Location2.Y=3477.16mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P2-2(3400.437mil,3484.247mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3430.643mil|Location2.X=3436.893mil|Location1.Y=3432.786mil|Location2.Y=3439.036mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3430.643mil|Location2.X=3436.893mil|Location1.Y=3432.786mil|Location2.Y=3439.036mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P2-2(3418.83mil,3415.605mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3370.99mil|Location2.X=3377.24mil|Location1.Y=3457.663mil|Location2.Y=3463.913mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3370.99mil|Location2.X=3377.24mil|Location1.Y=3457.663mil|Location2.Y=3463.913mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P2-3(3351mil,3471mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3381.206mil|Location2.X=3387.456mil|Location1.Y=3419.54mil|Location2.Y=3425.79mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3381.206mil|Location2.X=3387.456mil|Location1.Y=3419.54mil|Location2.Y=3425.79mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P2-3(3369.392mil,3402.358mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3321.553mil|Location2.X=3327.803mil|Location1.Y=3444.417mil|Location2.Y=3450.667mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3321.553mil|Location2.X=3327.803mil|Location1.Y=3444.417mil|Location2.Y=3450.667mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P2-4(3301.563mil,3457.753mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3331.769mil|Location2.X=3338.019mil|Location1.Y=3406.293mil|Location2.Y=3412.543mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3331.769mil|Location2.X=3338.019mil|Location1.Y=3406.293mil|Location2.Y=3412.543mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P2-4(3319.955mil,3389.112mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3739.741mil|Location2.X=3745.991mil|Location1.Y=3430.091mil|Location2.Y=3436.341mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3739.741mil|Location2.X=3745.991mil|Location1.Y=3430.091mil|Location2.Y=3436.341mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P3-1(3723.181mil,3449.063mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3739.754mil|Location2.X=3746.004mil|Location1.Y=3390.623mil|Location2.Y=3396.873mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3739.754mil|Location2.X=3746.004mil|Location1.Y=3390.623mil|Location2.Y=3396.873mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P3-1(3723.194mil,3378mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3688.56mil|Location2.X=3694.81mil|Location1.Y=3390.623mil|Location2.Y=3396.873mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3688.56mil|Location2.X=3694.81mil|Location1.Y=3390.623mil|Location2.Y=3396.873mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P3-2(3672mil,3378mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3688.56mil|Location2.X=3694.81mil|Location1.Y=3430.091mil|Location2.Y=3436.341mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3688.56mil|Location2.X=3694.81mil|Location1.Y=3430.091mil|Location2.Y=3436.341mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P3-2(3672mil,3449.063mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3637.379mil|Location2.X=3643.629mil|Location1.Y=3390.623mil|Location2.Y=3396.873mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3637.379mil|Location2.X=3643.629mil|Location1.Y=3390.623mil|Location2.Y=3396.873mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P3-3(3620.819mil,3378mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3637.379mil|Location2.X=3643.629mil|Location1.Y=3430.091mil|Location2.Y=3436.341mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3637.379mil|Location2.X=3643.629mil|Location1.Y=3430.091mil|Location2.Y=3436.341mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P3-3(3620.819mil,3449.063mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3586.198mil|Location2.X=3592.448mil|Location1.Y=3390.623mil|Location2.Y=3396.873mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3586.198mil|Location2.X=3592.448mil|Location1.Y=3390.623mil|Location2.Y=3396.873mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P3-4(3569.638mil,3378mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3586.198mil|Location2.X=3592.448mil|Location1.Y=3430.091mil|Location2.Y=3436.341mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3586.198mil|Location2.X=3592.448mil|Location1.Y=3430.091mil|Location2.Y=3436.341mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P3-4(3569.638mil,3449.063mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3994.415mil|Location2.X=4000.665mil|Location1.Y=3395.742mil|Location2.Y=3401.992mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3994.415mil|Location2.X=4000.665mil|Location1.Y=3395.742mil|Location2.Y=3401.992mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P4-1(3974.45mil,3388.75mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4004.617mil|Location2.X=4010.867mil|Location1.Y=3433.869mil|Location2.Y=3440.119mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4004.617mil|Location2.X=4010.867mil|Location1.Y=3433.869mil|Location2.Y=3440.119mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P4-1(3992.83mil,3457.395mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3944.965mil|Location2.X=3951.215mil|Location1.Y=3408.992mil|Location2.Y=3415.242mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3944.965mil|Location2.X=3951.215mil|Location1.Y=3408.992mil|Location2.Y=3415.242mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P4-2(3925mil,3402mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3955.18mil|Location2.X=3961.43mil|Location1.Y=3447.115mil|Location2.Y=3453.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3955.18mil|Location2.X=3961.43mil|Location1.Y=3447.115mil|Location2.Y=3453.365mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P4-2(3943.392mil,3470.642mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3895.528mil|Location2.X=3901.778mil|Location1.Y=3422.238mil|Location2.Y=3428.488mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3895.528mil|Location2.X=3901.778mil|Location1.Y=3422.238mil|Location2.Y=3428.488mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P4-3(3875.563mil,3415.247mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3905.743mil|Location2.X=3911.993mil|Location1.Y=3460.362mil|Location2.Y=3466.612mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3905.743mil|Location2.X=3911.993mil|Location1.Y=3460.362mil|Location2.Y=3466.612mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P4-3(3893.955mil,3483.888mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3846.091mil|Location2.X=3852.341mil|Location1.Y=3435.485mil|Location2.Y=3441.735mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3846.091mil|Location2.X=3852.341mil|Location1.Y=3435.485mil|Location2.Y=3441.735mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P4-4(3826.126mil,3428.493mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3856.306mil|Location2.X=3862.556mil|Location1.Y=3473.608mil|Location2.Y=3479.858mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3856.306mil|Location2.X=3862.556mil|Location1.Y=3473.608mil|Location2.Y=3479.858mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P4-4(3844.518mil,3497.135mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3994.623mil|Location2.X=4000.873mil|Location1.Y=3128.815mil|Location2.Y=3135.065mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3994.623mil|Location2.X=4000.873mil|Location1.Y=3128.815mil|Location2.Y=3135.065mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P5-1(3982mil,3151.625mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4034.091mil|Location2.X=4040.341mil|Location1.Y=3128.828mil|Location2.Y=3135.078mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4034.091mil|Location2.X=4040.341mil|Location1.Y=3128.828mil|Location2.Y=3135.078mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P5-1(4053.063mil,3151.638mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3994.623mil|Location2.X=4000.873mil|Location1.Y=3180.009mil|Location2.Y=3186.259mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3994.623mil|Location2.X=4000.873mil|Location1.Y=3180.009mil|Location2.Y=3186.259mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P5-2(3982mil,3202.819mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4034.091mil|Location2.X=4040.341mil|Location1.Y=3180.009mil|Location2.Y=3186.259mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4034.091mil|Location2.X=4040.341mil|Location1.Y=3180.009mil|Location2.Y=3186.259mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P5-2(4053.063mil,3202.819mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3994.623mil|Location2.X=4000.873mil|Location1.Y=3231.19mil|Location2.Y=3237.44mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3994.623mil|Location2.X=4000.873mil|Location1.Y=3231.19mil|Location2.Y=3237.44mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P5-3(3982mil,3254mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4034.091mil|Location2.X=4040.341mil|Location1.Y=3231.19mil|Location2.Y=3237.44mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4034.091mil|Location2.X=4040.341mil|Location1.Y=3231.19mil|Location2.Y=3237.44mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P5-3(4053.063mil,3254mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3994.623mil|Location2.X=4000.873mil|Location1.Y=3282.371mil|Location2.Y=3288.621mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3994.623mil|Location2.X=4000.873mil|Location1.Y=3282.371mil|Location2.Y=3288.621mil|Absolute=True">Clearance Constraint: (3.937mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P5-4(3982mil,3305.181mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4034.091mil|Location2.X=4040.341mil|Location1.Y=3282.371mil|Location2.Y=3288.621mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4034.091mil|Location2.X=4040.341mil|Location1.Y=3282.371mil|Location2.Y=3288.621mil|Absolute=True">Clearance Constraint: (4.134mil &lt; 5mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad P5-4(4053.063mil,3305.181mil) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDZFB0F5Z0GGW5ID5S4J1ITMMRWL53OC1NMNSFDFX1CBJKIC3Q5OO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Board Clearance Constraint (Gap=0mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3400.875mil|Location2.X=3407.125mil|Location1.Y=2898.852mil|Location2.Y=2905.101mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3400.875mil|Location2.X=3407.125mil|Location1.Y=2898.852mil|Location2.Y=2905.101mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 7.874mil) Between Arc (3404mil,2901.976mil) on Bottom Overlay And Board Edge </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3229.317mil|Location2.X=3238.441mil|Location1.Y=3419.41mil|Location2.Y=3431.029mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3229.317mil|Location2.X=3238.441mil|Location1.Y=3419.41mil|Location2.Y=3431.029mil|Absolute=True">Board Outline Clearance(Outline Edge): (4.651mil &lt; 7.874mil) Between Board Edge And Track (3237.748mil,3422.109mil)(3246.919mil,3387.883mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3229.228mil|Location2.X=3238.352mil|Location1.Y=3419.452mil|Location2.Y=3431.072mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3229.228mil|Location2.X=3238.352mil|Location1.Y=3419.452mil|Location2.Y=3431.072mil|Absolute=True">Board Outline Clearance(Outline Edge): (4.454mil &lt; 7.874mil) Between Board Edge And Track (3237.748mil,3422.109mil)(3260.185mil,3428.121mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3995.154mil|Location2.X=4004.278mil|Location1.Y=3072.926mil|Location2.Y=3082.05mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3995.154mil|Location2.X=4004.278mil|Location1.Y=3072.926mil|Location2.Y=3082.05mil|Absolute=True">Board Outline Clearance(Outline Edge): (2.631mil &lt; 7.874mil) Between Board Edge And Track (3999.716mil,3080.772mil)(3999.716mil,3104.394mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3995.154mil|Location2.X=4004.278mil|Location1.Y=3072.926mil|Location2.Y=3082.05mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3995.154mil|Location2.X=4004.278mil|Location1.Y=3072.926mil|Location2.Y=3082.05mil|Absolute=True">Board Outline Clearance(Outline Edge): (2.631mil &lt; 7.874mil) Between Board Edge And Track (3999.716mil,3080.772mil)(4035.15mil,3080.772mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4056.758mil|Location2.X=4065.882mil|Location1.Y=3416.796mil|Location2.Y=3428.457mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4056.758mil|Location2.X=4065.882mil|Location1.Y=3416.796mil|Location2.Y=3428.457mil|Absolute=True">Board Outline Clearance(Outline Edge): (6.351mil &lt; 7.874mil) Between Board Edge And Track (4033.828mil,3427.864mil)(4056.645mil,3421.75mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4030.588mil|Location2.X=4039.711mil|Location1.Y=3072.926mil|Location2.Y=3082.05mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4030.588mil|Location2.X=4039.711mil|Location1.Y=3072.926mil|Location2.Y=3082.05mil|Absolute=True">Board Outline Clearance(Outline Edge): (2.631mil &lt; 7.874mil) Between Board Edge And Track (4035.15mil,3080.772mil)(4035.15mil,3104.394mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4056.758mil|Location2.X=4065.882mil|Location1.Y=3416.796mil|Location2.Y=3428.457mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4056.758mil|Location2.X=4065.882mil|Location1.Y=3416.796mil|Location2.Y=3428.457mil|Absolute=True">Board Outline Clearance(Outline Edge): (6.351mil &lt; 7.874mil) Between Board Edge And Track (4047.474mil,3387.525mil)(4056.645mil,3421.75mil) on Top Overlay </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDTQKNRXHWCZGGLMAVOOHUJZWC4KWW1ZYJ5PV5SRL5JSLON1NCMUDB"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Room expansion (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('expansion'))</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3674.669mil|Location1.Y=0mil|Location2.Y=3147.055mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3674.669mil|Location1.Y=0mil|Location2.Y=3147.055mil|Absolute=True">Room Definition: Between Component J1-DF12NB(3.0)-20DS-0.5V(51) (3492.583mil,3033.866mil) on Bottom Layer And Room expansion (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('expansion')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3325.732mil|Location1.Y=0mil|Location2.Y=3376.016mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3325.732mil|Location1.Y=0mil|Location2.Y=3376.016mil|Absolute=True">Room Definition: Between Component P1-vertical_4pos_conn (3255.85mil,3303.181mil) on Top Layer And Room expansion (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('expansion')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3542.95mil|Location1.Y=0mil|Location2.Y=4135.145mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3542.95mil|Location1.Y=0mil|Location2.Y=4135.145mil|Absolute=True">Room Definition: Between Component P2-vertical_4pos_conn (3454.511mil,3480.19mil) on Top Layer And Room expansion (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('expansion')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3796.016mil|Location1.Y=0mil|Location2.Y=4089.693mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3796.016mil|Location1.Y=0mil|Location2.Y=4089.693mil|Absolute=True">Room Definition: Between Component P3-vertical_4pos_conn (3723.181mil,3431.15mil) on Top Layer And Room expansion (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('expansion')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=4228.99mil|Location1.Y=0mil|Location2.Y=4134.838mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=4228.99mil|Location1.Y=0mil|Location2.Y=4134.838mil|Absolute=True">Room Definition: Between Component P4-vertical_4pos_conn (3988.193mil,3440.092mil) on Top Layer And Room expansion (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('expansion')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=4693.693mil|Location1.Y=0mil|Location2.Y=3378.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=4693.693mil|Location1.Y=0mil|Location2.Y=3378.213mil|Absolute=True">Room Definition: Between Component P5-vertical_4pos_conn (4035.15mil,3151.638mil) on Top Layer And Room expansion (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('expansion')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3838.638mil|Location1.Y=0mil|Location2.Y=2985.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3838.638mil|Location1.Y=0mil|Location2.Y=2985.638mil|Absolute=True">Room Definition: Between Room expansion (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('expansion')) And Small Component P10-BB_TEST_TH (3816mil,2963mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3840.638mil|Location1.Y=0mil|Location2.Y=3113.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3840.638mil|Location1.Y=0mil|Location2.Y=3113.638mil|Absolute=True">Room Definition: Between Room expansion (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('expansion')) And Small Component P11-BB_TEST_TH (3818mil,3091mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3725.955mil|Location1.Y=0mil|Location2.Y=3113.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3725.955mil|Location1.Y=0mil|Location2.Y=3113.638mil|Absolute=True">Room Definition: Between Room expansion (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('expansion')) And Small Component P12-BB_TEST_TH (3703.317mil,3091mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3728.638mil|Location1.Y=0mil|Location2.Y=2992.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3728.638mil|Location1.Y=0mil|Location2.Y=2992.638mil|Absolute=True">Room Definition: Between Room expansion (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('expansion')) And Small Component P7-BB_TEST_TH (3706mil,2970mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3841.638mil|Location1.Y=0mil|Location2.Y=3050.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3841.638mil|Location1.Y=0mil|Location2.Y=3050.638mil|Absolute=True">Room Definition: Between Room expansion (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('expansion')) And Small Component P8-BB_TEST_TH (3819mil,3028mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3725.955mil|Location1.Y=0mil|Location2.Y=3053.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3725.955mil|Location1.Y=0mil|Location2.Y=3053.255mil|Absolute=True">Room Definition: Between Room expansion (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('expansion')) And Small Component P9-BB_TEST_TH (3703.317mil,3030.617mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3520.165mil|Location1.Y=0mil|Location2.Y=3324mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3520.165mil|Location1.Y=0mil|Location2.Y=3324mil|Absolute=True">Room Definition: Between Room expansion (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('expansion')) And SMT SIP Component P6-vertical_4pos_conn (3468mil,3301.362mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3551.26mil|Location1.Y=0mil|Location2.Y=3221.606mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3551.26mil|Location1.Y=0mil|Location2.Y=3221.606mil|Absolute=True">Room Definition: Between Room expansion (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('expansion')) And SMT Small Component R1-ERJ3EKF1002V (3505mil,3197mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3663.26mil|Location1.Y=0mil|Location2.Y=3221.606mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\expansion_board\expansion.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=3663.26mil|Location1.Y=0mil|Location2.Y=3221.606mil|Absolute=True">Room Definition: Between Room expansion (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('expansion')) And SMT Small Component R2-ERJ3EKF1002V (3617mil,3197mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

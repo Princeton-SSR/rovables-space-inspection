@@ -15,10 +15,6 @@ upper_green = np.array([95, 255, 255])
 #BLUE
 lower_blue = np.array([105,50,110])
 upper_blue = np.array([120,255,255])
-#RED
-lower_red = np.array([30,150,50])
-upper_red = np.array([255,255,180])
-
 
 #Get through the intial gopro screen
 for i in range(20):
@@ -80,7 +76,7 @@ while(True):
         if (area > 50):
             brx,bry,brw,brh = cv2.boundingRect(c)
             x = brx+brw/2
-            y = bry+brh/2
+            y = bry+brh/2   
             arena_center = (x, y)
             cv2.circle(frame, (int(x), int(y)), 10, (255, 0, 0), -1)
             cv2.putText(frame, "Vibration Source", (int(x) - 20, int(y) - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)

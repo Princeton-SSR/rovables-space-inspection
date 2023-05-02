@@ -2,13 +2,12 @@
 #include <RF24.h>
 #include <RF24Network.h>
  
-RF24 radio(5, 2);               // nRF24L01 (CE,CSN)
+RF24 radio(2, 10);               // nRF24L01 (CE,CSN)
 
 RF24Network network(radio);     // Network uses that radio
 const uint16_t this_rov = 00;  // Address of our node in Octal format (04, 031, etc)
-
+char receivedChar;
 char rx_byte = 0;
-int vibMotor = 11;
 
 struct message_t {
   double belief;
@@ -34,18 +33,33 @@ void setup(void) {
       // hold in infinite loop
     }
   }
+  radio.setDataRate(RF24_250KBPS);
   radio.setChannel(100);
   radio.setPALevel(RF24_PA_HIGH);
   network.begin(/*node address*/ this_rov);
-  pinMode(vibMotor, OUTPUT);
-  digitalWrite(vibMotor, HIGH);
 //  network.update();
 //  RF24NetworkHeader header(00);
 //  message_t message = {this_rov, 0, -1, -1};
-//  bool startOk;
+  // bool startExperiment = false;
 //  startOk = network.multicast(header, &message, sizeof(message_t), 1);
 //  SerialUSB.print("Starting Rovables: ");
 //  SerialUSB.println(startOk);
+  // unsigned long start = millis();
+  // while(!startExperiment) {
+  //   unsigned long now = millis();
+  //   if (now - start >= 3000) {
+  //     network.update();
+  //     RF24NetworkHeader header(00);
+  //     message_t message = {0, -1, -1};
+  //     for (int i = 0; i < 3; i++) {
+  //       network.update();
+  //       if (network.multicast(header, &message, sizeof(message_t), i)) {
+  //         SerialUSB.println("Starting Experiment");
+  //         startExperiment = true;
+  //       }
+  //     }
+  //   }
+  // }
 }
  
 void loop(void) {

@@ -1,7 +1,13 @@
+/*
+This file implements the Bayes Bot algorithm onto the Rovables platform
+*/
+#include <VL53L1X.h>
 #include <Adafruit_MPU6050.h>
 #include <Adafruit_Sensor.h>
 #include <RF24Network.h>
 #include <RF24.h>
+// #include "movement.h"
+// #include "beta_infer.h"
 
 #define  M1_DIR   A2 
 #define  M1_PWM   9 
@@ -11,28 +17,32 @@
 #define ENC2_INT  7
 #define ENC1_LED  8
 #define ENC2_LED  6
-
+// C ->01
+// A -> 02
+// 7 -> 03
+// 6 -> 04
 Adafruit_MPU6050 mpu;
+VL53L1X tof;
 RF24 radio(2, 10);   // nRF24L01 (CE,CSN)
 RF24Network network(radio);
-const uint16_t this_rov = 01; //{00, 01, 02, 03, 04};
+const uint16_t this_rov = 02; //{00, 01, 02, 03, 04};
 const uint16_t base = 00;
-const unsigned long interval = 500; //ms
-unsigned long last_time_sent; 
-bool simStart = false;
-double rov_belief = 0;
-double p_c = 0.5;
+unsigned long last_time_sent = 0; 
+bool start = false;
+double rov_belief = 0.5;
+double p_c = 0.95;
 int d_f = 1;
-int rov_index = 0;
 bool u_plus = 0;
 bool ok;
-int last_index = -1;
-int v = 0;
-double vibThresh = 1.25;
+int v = 1;
+double vibThresh = 0.1;
+int caThresh = 100;
+int forwardUpper = 564*8;
+int pauseTime = 2000; 
 
 double alpha = 0;
 double beta = 0;
-uint32_t tau = 3000;
+uint32_t tau = 200;
 uint8_t encoder1Counter = 0;
 uint8_t encoder2Counter = 0;
 sensors_event_t a, g, temp;
@@ -40,18 +50,25 @@ sensors_event_t a, g, temp;
 float accelx;
 float accely;
 float accelz;
-float deady;
-float reading;
-bool deadlock = false;
 
-int window = 3;
-float mWindow[3] = {0};
-float mAV = 0;
-int movAvgC = 0;
 
-float xOffset = 0.19;
-float yOffset = 0.24;
-float zOffset = 10.53;
+
+// int window = 5;
+// float mWindow[5] = {0};
+// float mAV = 0;
+// int movAvgC = 0;
+const int numReadings = 10;
+int vReadings [numReadings];
+int readIndex  = 0;
+long total  = 0;
+
+const int numV = 200;
+int inspectReadings [numV];
+int inspectIndex = 0;
+
+// float xOffset = 0.19;
+// float yOffset = 0.24;
+// float zOffset = 10.53;
 //ROV01: 0.19, 0.24, 10.53 
 //ROV02: 0.32, 0.07, 9.5
 //ROV03: 0.47, 0.01, 9.86
@@ -66,9 +83,32 @@ struct message_t {
 
 struct message_r {
   uint16_t id;
-  int index_prime;
   int v_prime;
 };
+
+long smooth() { /* function smooth */
+  ////Perform average on sensor readings
+  long average;
+  // subtract the last reading:
+  total = total - vReadings[readIndex];
+  // read the sensor:
+  mpu.getEvent(&a, &g, &temp);
+  vReadings[readIndex] =  a.acceleration.z;
+  // add value to total:
+  total = total + vReadings[readIndex];
+  // handle index
+  readIndex = readIndex + 1;
+  if (readIndex >= numReadings) {
+    readIndex = 0;
+  }
+  // calculate the average:
+  average = total / numReadings;
+
+  return average;
+}
+
+
+
 /*
  * zlib License
  *
@@ -148,27 +188,34 @@ double incbeta(double a, double b, double x) {
 void runMotor(int dur) {
   analogWrite(M1_PWM, 75);
   analogWrite(M2_PWM, 75);
-  delay(50);
-  mpu.getEvent(&a, &g, &temp);
-  deady = a.acceleration.y - yOffset;
-  if (deady < -0.75) {
-    deadlock = true;
-  }
   delay(dur);
   analogWrite(M1_PWM, 0);
   analogWrite(M2_PWM, 0);
 }
 
 void moveForward(int dur) {
-  ok = send_Base();
   digitalWrite(M1_DIR, 0);
   digitalWrite(M2_DIR, 1);
-  
-  runMotor(dur);
+  for (int i=0; i < dur; i++){ 
+    int16_t distance;
+    tof.read();
+    distance = tof.ranging_data.range_mm;
+    if (distance <= caThresh) {
+      ok = send_Base();
+      turnLeft(1200);
+    }
+    else {
+      // Go back to moving forward
+      digitalWrite(M1_DIR, 0);
+      digitalWrite(M2_DIR, 1);
+      analogWrite(M1_PWM, 75);
+      analogWrite(M2_PWM, 75);
+      delay(1);
+    }
+  }
 }
 
 void moveBackward(int dur) {
-  ok = send_Base();
   digitalWrite(M1_DIR, 1);
   digitalWrite(M2_DIR, 0);
 
@@ -176,7 +223,6 @@ void moveBackward(int dur) {
 }
 
 void turnRight(int dur){ 
-  ok = send_Base();
   digitalWrite(M1_DIR, 1);
   digitalWrite(M2_DIR, 1);
 
@@ -184,7 +230,6 @@ void turnRight(int dur){
 }
 
 void turnLeft(int dur){ 
-  ok = send_Base();
   digitalWrite(M1_DIR, 0);
   digitalWrite(M2_DIR, 0);
 
@@ -192,77 +237,138 @@ void turnLeft(int dur){
 }
 
 void doRandomWalk() {
+  moveForward(random(0, forwardUpper));
+  delay(10);
   int dir = random(1,3);
   if (dir == 1) {
-    turnLeft(random(600,1501));
+    ok = send_Base();
+    turnLeft(random(600,1000));
   } else if (dir == 2) {
-    turnRight(random(600,1501));
+    ok = send_Base();
+    turnRight(random(600,1000));
   }
-  delay(10);
-  moveForward(random(600, 2001));
   delay(10);
 }
 
 bool inspect() {
-  mAV = 0;
-  mWindow[movAvgC] = reading;
-  movAvgC = movAvgC + 1;
-  if (movAvgC > window - 1) {
-    movAvgC = 0;
-  }
-  for (int j = 0; j < window; j++) {
-    mAV = mAV + mWindow[j];
-  }
-  mAV = mAV / window;
-  if (abs(reading) > vibThresh*mAV) {
-    return 1;
-  } else {
-    return 0;
-  }
-}
+  inspectIndex = 0;
+  //When inspecting we must stop the motor.
+  analogWrite(M1_PWM, 0);
+  analogWrite(M2_PWM, 0);
+  unsigned long inspect_start = millis();
+  while(true){
+    unsigned long now = millis();
+    if (now - inspect_start >= pauseTime) {
+      break;
+    }
 
-void handle_R(RF24NetworkHeader& header) {
-  message_r message;
-  network.read(header, &message, sizeof(message_r));
-  if (header.from_node != this_rov || header.from_node != 00) {
-    if (message.index_prime != last_index) {
-      last_index = message.index_prime;
-      beta = beta + message.v_prime;
-      alpha = alpha + (1-message.v_prime); 
+    mpu.getEvent(&a, &g, &temp);
+    inspectReadings[inspectIndex] =  a.acceleration.z - smooth();
+
+    inspectIndex = inspectIndex + 1;
+    if (inspectIndex >= numV) {
+      inspectIndex = 0;
     }
   }
+
+  int sum = 0;
+  for (int i = 0; i < numV; i++) {
+    sum = sum + abs(inspectReadings[i]);
+  }
+  SerialUSB.println((double) sum / (double) numV);
+  if (((double) sum / (double) numV) > vibThresh) {
+    SerialUSB.println("Send 1");
+    return 1;
+  } else {
+    SerialUSB.println("Send 0");
+    return 0;
+  }
+  // mAV = 0;
+  // mWindow[movAvgC] = reading;
+  // movAvgC = movAvgC + 1;
+  // if (movAvgC > window - 1) {
+  //   movAvgC = 0;
+  // }
+  // for (int j = 0; j < window; j++) {
+  //   mAV = mAV + mWindow[j];
+  // }
+  // mAV = mAV / window;
+  // if (abs(reading) > vibThresh*mAV) {
+  //   return 1;
+  // } else {
+  //   return 0;
+  // }
+}
+
+void handle_R() {
+  message_r message;
+  RF24NetworkHeader header;
+  network.read(header, &message, sizeof(message_r));
+  // if (header.from_node != this_rov || header.from_node != 00) {
+    // if (message.index_prime != last_index) {
+    // beta = beta + (1 - v);
+    // alpha = alpha + v;
+    // last_index = message.index_prime;
+  beta = beta + (1 - message.v_prime);
+  alpha = alpha + message.v_prime; 
+  // SerialUSB.print("Header: ");
+  // SerialUSB.print(header.from_node);
+  // SerialUSB.print(", ");
+  // SerialUSB.print(alpha);
+  // SerialUSB.print(", ");
+  // SerialUSB.println(beta);
+    // }
+  // }
 }
 
 bool send_Base() {
+  network.update();
   RF24NetworkHeader header(00);
   message_t message = {rov_belief, alpha, beta};
   return network.write(header, &message, sizeof(message_t));
 }
 
-bool send_Rov(int three) {
-  RF24NetworkHeader header(this_rov, 'R');
-  message_r message = {this_rov, rov_index, three};
-  return network.multicast(header, &message, sizeof(message_r), 1);
-  //return network.write(header, &message, sizeof(message_t));
+void send_Rov(int v) {
+  network.update();
+  RF24NetworkHeader header(this_rov);
+  message_r message = {this_rov, v};
+  for (int i = 0; i < 3; i++) {
+    network.multicast(header, &message, sizeof(message_r), i);
+  // return network.write(header, &message, sizeof(message_t));
+  }
 }
 
-void checkStart() {
+bool checkStart() {
   network.update();
   if (network.available()) {
+    // SerialUSB.println("read Network");
     RF24NetworkHeader header;
     message_t initM;
     network.read(header, &initM, sizeof(message_t));
     if (initM.alpha == -1 && initM.beta == -1) {
-      simStart = true;
+      RF24NetworkHeader header(00);
+      message_t message = {0, -1, -1};
+      network.multicast(header, &message, sizeof(message_t), 1);
+      return true;
     }
   }
   else {
     SerialUSB.println("No Network Start!");
   }
+  return false;
 }
+
 void setup() {
   SerialUSB.begin(115200);
-  SerialUSB.println("Starting Rovable");
+
+  // while (!SerialUSB) {
+  //   // some boards need this because of native USB capability
+  // }
+  // Serial1.begin(9600);
+  // Serial1.println("Starting Rovable");
+  // SerialUSB.println("Starting Rovable");
+  Wire.begin();
+  Wire.setClock(400000);
   pinMode(M1_DIR, OUTPUT); 
   pinMode(M1_PWM, OUTPUT); 
   pinMode(M2_PWM, OUTPUT); 
@@ -272,119 +378,83 @@ void setup() {
   pinMode(ENC1_LED, OUTPUT);
   pinMode(ENC2_LED, OUTPUT);
 
+  randomSeed(this_rov);
+
+  if (!tof.init()) {
+      SerialUSB.println("Time of Flight failed to start");
+      while(1);
+  }
+  tof.setTimeout(500);
+
+  tof.setDistanceMode(VL53L1X::Short);
+  tof.setMeasurementTimingBudget(20000);
+
+  tof.startContinuous(50);
+
   mpu.begin();
   mpu.setAccelerometerRange(MPU6050_RANGE_2_G);
   mpu.setGyroRange(MPU6050_RANGE_250_DEG);
   mpu.setFilterBandwidth(MPU6050_BAND_10_HZ);
 
-  for (int j = 0; j < window; j++) {
-    mpu.getEvent(&a, &g, &temp);
-    accelx = a.acceleration.x;
-    accely = a.acceleration.y;
-    accelz = a.acceleration.z;
-    double reading = accelz;
-    mWindow[j] = reading;
+  // for (int j = 0; j < window; j++) {
+  //   mpu.getEvent(&a, &g, &temp);
+  //   accelx = a.acceleration.x;
+  //   accely = a.acceleration.y;
+  //   accelz = a.acceleration.z;
+  //   double reading = accelz;
+  //   mWindow[j] = reading;
+  // }
+  if (!radio.begin()) {
+      while(1) {
+        SerialUSB.println("Radio failed to start");
+      }
   }
-
-  radio.begin();
+  radio.setDataRate(RF24_250KBPS);
   radio.setPALevel(RF24_PA_HIGH);
   radio.setChannel(100);
   network.begin(/*node address*/ this_rov);
-  SerialUSB.println("Setting offset");
-  if (this_rov == 01) {
-    xOffset = 0.19;
-    yOffset = 0.24;
-    zOffset = 10.53;
-  }
 
-  if (this_rov == 02) {
-    SerialUSB.println("Set offset");
-    xOffset = 0.32;
-    yOffset = 0.07;
-    zOffset = 9.5;
-  }
-
-  if (this_rov == 03) {
-    xOffset = 0.47;
-    yOffset = 0.01;
-    zOffset = 9.86;
-  }
-
-  if (this_rov == 04) {
-    xOffset = 1.03;
-    yOffset = 0.2;
-    zOffset = 9.98;
-  }
+  // bool startExperiment = false;
+  // while(!startExperiment) {
+  //   if (checkStart()) {
+  //     startExperiment = true;
+  //   }
+  // }
 }
 
 void loop() {
-  // Check the sampling rate. 
-//  moveForward(1000);
-//  delay(100);
-//  turnRight(1000);
-//  delay(100);
-//  turnLeft(1000);
-//  delay(100);
-//  mpu.getEvent(&a, &g, &temp);
-//  accelx = a.acceleration.x - xOffset;
-//  accely = a.acceleration.y - yOffset;
-//  accelz = a.acceleration.z - zOffset;
-//  reading = abs(accelz);
-//  //SerialUSB.print("Raw_Combined_Accel:");
-//  //SerialUSB.print("X_accel:");
-//  SerialUSB.print(accelx);
-//  SerialUSB.print(",");
-//  //SerialUSB.print("Y_accel:");
-//  SerialUSB.print(accely);
-//  SerialUSB.print(",");
-//  //SerialUSB.print("Z_accel:");
-//  SerialUSB.println(accelz);
-//  SerialUSB.print(",");
-//  SerialUSB.print("Moving_Avg_Threshold:");
-//  SerialUSB.println(mAV*vibThresh);
-//  SerialUSB.print(",");
-//  SerialUSB.print("Detect:");
-//  SerialUSB.println(v);
-//  if (deadlock) {
-//    moveBackward(800);
-//    deadlock = false;
-//  } else {
-//    doRandomWalk();
-//    delay(10);
-//  }
-  doRandomWalk();
-//  network.update();
-//  if(network.available()) {
-//    RF24NetworkHeader header;
-//    network.peek(header);
-//
-//    switch(header.type) { // Check if the message is from the Base Station or another Rovable
-//      case 'B':
-//        break;
-//      case 'R':
-//        handle_R(header); // Get message from other rovable
-//        break;
-//    }
-//    rov_index = rov_index + 1;
-//  }
-//  unsigned long now = millis();
-//  if (now - last_time_sent >= interval) {
-//    last_time_sent = now;
-//    v = inspect();
-//    beta = beta + v;
-//    alpha = alpha + (1 - v);
-//  }
-//  rov_belief = incbeta(alpha, beta, 0.5);
-//  ok = send_Base(); // Send current distribution to base
-//  if (rov_belief > p_c) {
-//    d_f = 1;
-//  }
-//  if ((1 - rov_belief) > p_c) {
-//    d_f = 0;
-//  }
-//  if (d_f != -1 & u_plus == 1) {
-//    ok = send_Rov(d_f);
-//  } else {
-//    ok = send_Rov(v);
-//  }
+  ok = send_Base();
+  // Random walk handles collision avoidance.
+  // doRandomWalk();
+  unsigned long now = millis();
+  //Inspect the vibration every interval
+  if (now - last_time_sent >= tau) {
+    last_time_sent = now;
+    v = inspect();
+    beta = beta + (1 - v);
+    alpha = alpha + v;
+    // SerialUSB.print("Alpha: ");
+    // SerialUSB.print(alpha);
+    // SerialUSB.print("Beta: ");
+    // SerialUSB.println(beta);
+  }
+  network.update();
+  if(network.available()) {
+    //Read message from other rovables
+    // SerialUSB.println("Found Message");
+    handle_R();
+  }
+  rov_belief = incbeta(alpha, beta, 0.5);
+  ok = send_Base(); // Send current distribution to base
+  if (rov_belief > p_c) {
+    d_f = 1;
+  }
+  if ((1 - rov_belief) > p_c) {
+    d_f = 0;
+  }
+  if (d_f != -1 & u_plus == 1) {
+    send_Rov(d_f);
+  } else {
+    send_Rov(v);
+  }
 }

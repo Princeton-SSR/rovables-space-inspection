@@ -1,0 +1,98 @@
+Protel Design System Design Rule Check
+PCB File : C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc
+Date     : 3/29/2023
+Time     : 1:07:22 AM
+
+WARNING: Zero hole size multi-layer pad(s) detected
+   Pad P1-3(88.892mm,27.817mm) on Multi-Layer on Net SDA
+   Pad P1-4(88.892mm,26.517mm) on Multi-Layer on Net GND
+   Pad P1-2(88.892mm,29.117mm) on Multi-Layer on Net SCL
+   Pad P1-1(88.892mm,30.417mm) on Multi-Layer on Net VDD
+
+WARNING: Multilayer Pads with 0 size Hole found
+   Pad P1-3(88.892mm,27.817mm) on Multi-Layer
+   Pad P1-4(88.892mm,26.517mm) on Multi-Layer
+   Pad P1-2(88.892mm,29.117mm) on Multi-Layer
+   Pad P1-1(88.892mm,30.417mm) on Multi-Layer
+
+Processing Rule : Clearance Constraint (Gap=0.2mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=0.203mm) (OnLayer('Top Layer')),(All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=0.203mm) (OnLayer('Bottom Layer')),(All)
+Rule Violations :0
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+Rule Violations :0
+
+Processing Rule : Modified Polygon (Allow modified: No), (Allow shelved: No)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.089mm) (Max=2.54mm) (Preferred=0.381mm) (All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Minimum Annular Ring (Minimum=0.076mm) (All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=0.2mm) (Max=6.3mm) (All)
+Rule Violations :0
+
+Processing Rule : Hole To Hole Clearance (Gap=0.254mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.1mm) (All),(All)
+   Violation between Minimum Solder Mask Sliver Constraint: (0.097mm < 0.1mm) Between Pad P1-1(88.892mm,30.417mm) on Multi-Layer And Pad P1-2(88.892mm,29.117mm) on Multi-Layer [Top Solder] Mask Sliver [0.097mm] / [Bottom Solder] Mask Sliver [0.097mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.006mm < 0.1mm) Between Pad P1-1(88.892mm,30.417mm) on Multi-Layer And Via (90.551mm,30.302mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.006mm] / [Bottom Solder] Mask Sliver [0.006mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.097mm < 0.1mm) Between Pad P1-2(88.892mm,29.117mm) on Multi-Layer And Pad P1-3(88.892mm,27.817mm) on Multi-Layer [Top Solder] Mask Sliver [0.097mm] / [Bottom Solder] Mask Sliver [0.097mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.097mm < 0.1mm) Between Pad P1-3(88.892mm,27.817mm) on Multi-Layer And Pad P1-4(88.892mm,26.517mm) on Multi-Layer [Top Solder] Mask Sliver [0.097mm] / [Bottom Solder] Mask Sliver [0.097mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.041mm < 0.1mm) Between Pad U1-11(91.148mm,30.302mm) on Top Layer And Via (90.551mm,30.302mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.041mm]
+Rule Violations :5
+
+Processing Rule : Silk To Solder Mask (Clearance=0.1mm) (IsPad),(All)
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 0.1mm) Between Pad P1-1(88.892mm,30.417mm) on Multi-Layer And Track (89.408mm,25.4mm)(89.408mm,31.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 0.1mm) Between Pad P1-2(88.892mm,29.117mm) on Multi-Layer And Track (89.408mm,25.4mm)(89.408mm,31.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 0.1mm) Between Pad P1-3(88.892mm,27.817mm) on Multi-Layer And Track (89.408mm,25.4mm)(89.408mm,31.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 0.1mm) Between Pad P1-4(88.892mm,26.517mm) on Multi-Layer And Track (89.408mm,25.4mm)(89.408mm,31.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]
+   Violation between Silk To Solder Mask Clearance Constraint: (0.068mm < 0.1mm) Between Pad U1-1(92.748mm,30.302mm) on Top Layer And Text "*" (92.513mm,31.509mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.068mm]
+Rule Violations :5
+
+Processing Rule : Silk to Silk (Clearance=0.1mm) (All),(All)
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.1mm) Between Text "*" (92.513mm,31.509mm) on Top Overlay And Track (90.627mm,31.229mm)(93.269mm,31.229mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.1mm) Between Text "*" (92.513mm,31.509mm) on Top Overlay And Track (93.269mm,30.755mm)(93.269mm,31.229mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+Rule Violations :2
+
+Processing Rule : Net Antennae (Tolerance=0mm) (All)
+Rule Violations :0
+
+Processing Rule : Board Clearance Constraint (Gap=0mm) (All)
+   Violation between Board Outline Clearance(Outline Edge): (0.139mm < 0.2mm) Between Board Edge And Pad P1-1(88.892mm,30.417mm) on Multi-Layer 
+   Violation between Board Outline Clearance(Outline Edge): (0.139mm < 0.2mm) Between Board Edge And Pad P1-2(88.892mm,29.117mm) on Multi-Layer 
+   Violation between Board Outline Clearance(Outline Edge): (0.139mm < 0.2mm) Between Board Edge And Pad P1-3(88.892mm,27.817mm) on Multi-Layer 
+   Violation between Board Outline Clearance(Outline Edge): (0.139mm < 0.2mm) Between Board Edge And Pad P1-4(88.892mm,26.517mm) on Multi-Layer 
+   Violation between Board Outline Clearance(Outline Edge): (0.186mm < 0.2mm) Between Board Edge And Text "R2" (95.949mm,26.343mm) on Top Overlay 
+   Violation between Board Outline Clearance(Outline Edge): (Collision < 0.2mm) Between Board Edge And Track (89.408mm,25.4mm)(89.408mm,31.75mm) on Top Overlay 
+Rule Violations :6
+
+Processing Rule : Room tof_board (Bounding Region = (98.171mm, 26.924mm, 103.759mm, 39.878mm) (InComponentClass('tof_board'))
+   Violation between Room Definition: Between Component U1-VL53L1CBV0FY/1 (91.948mm,28.702mm) on Top Layer And Room tof_board (Bounding Region = (98.171mm, 26.924mm, 103.759mm, 39.878mm) (InComponentClass('tof_board')) 
+   Violation between Room Definition: Between Room tof_board (Bounding Region = (98.171mm, 26.924mm, 103.759mm, 39.878mm) (InComponentClass('tof_board')) And SIP Component P1-4pos_conn_tof (88.892mm,30.417mm) on Top Layer 
+   Violation between Room Definition: Between Room tof_board (Bounding Region = (98.171mm, 26.924mm, 103.759mm, 39.878mm) (InComponentClass('tof_board')) And SMT Small Component C1-C0402C104K8PACTU (94.234mm,29.845mm) on Top Layer 
+   Violation between Room Definition: Between Room tof_board (Bounding Region = (98.171mm, 26.924mm, 103.759mm, 39.878mm) (InComponentClass('tof_board')) And SMT Small Component C2-GRM155R60J475ME47D (95.885mm,29.845mm) on Top Layer 
+   Violation between Room Definition: Between Room tof_board (Bounding Region = (98.171mm, 26.924mm, 103.759mm, 39.878mm) (InComponentClass('tof_board')) And SMT Small Component R1-ERA-2AEB103X (94.851mm,27.855mm) on Top Layer 
+Rule Violations :5
+
+Processing Rule : Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)
+Rule Violations :0
+
+
+Violations Detected : 23
+Waived Violations : 0
+Time Elapsed        : 00:00:01

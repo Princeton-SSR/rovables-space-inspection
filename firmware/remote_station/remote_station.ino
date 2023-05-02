@@ -8,7 +8,7 @@ const uint16_t this_rov = 01;
 struct message_dir {
   int dir;
 };
-RF24 radio(5, 2);   // nRF24L01 (CE,CSN)
+RF24 radio(2, 10);   // nRF24L01 (CE,CSN)
 RF24Network network(radio);
 
 void setup() {

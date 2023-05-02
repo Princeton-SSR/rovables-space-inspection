@@ -1,0 +1,473 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD22\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">3/29/2023</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">1:07:22 AM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc" class="file"><acronym title="C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc">C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">8</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">23</td></tr>
+</table>
+</td>
+</table><a name="ID0H5CSCBONANHDR04WZKHLRRAIOTKLLCFDWCOGJMWAJOT3MMF1CBE"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYMCWNU3H22ZOE4PPJ02O0GLBOCF2YQMTVA5JVAI5SQR41ARTAY3C">Zero hole size multi-layer pad(s) detected</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRQNJXBCAZCZCPLVUSQC1JOO4BG3FEHXW2XSGYPM5HUQTOSATWLOP">Multilayer Pads with 0 size Hole found</a></td>
+<td class="column2">4</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">8</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID0FE4BQN5XUG3C0IB10BSZLTFRNCTBZ5W42FK05Z2ZE5YAAM0YTJ">Clearance Constraint (Gap=0.2mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDANBSR3MRLRRXLKO32I5UZCPDTGF1PE5FXOIXDRJFPS43MXJUQXMI">Clearance Constraint (Gap=0.203mm) (OnLayer('Top Layer')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDFXCIT5LTITW0DKDMI0NMHFZZPFGQFTAAPVNICNNJJLHTPZ1BTBEB">Clearance Constraint (Gap=0.203mm) (OnLayer('Bottom Layer')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID3FYAZSA3W3CKLKOYRVTJZRRRMM2EBPGZXDXSJJGDTVTWWNISBY0J">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDD1KSMO4LFZDTJ0IPLGPSAQ4HTCXQNYH4OAMBVDG2ZNMU3VESS1AH">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDXQNJGTBR2YUMCDKXQNLLI4RGWCZT5XVG3FW15VH0MY1CJ3MGCOFH">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDG4ZAK2JCW4HSPZPSAOH1JR3YHJO2ZFNSMIPQ5TSLEWQZFBFYDGE">Width Constraint (Min=0.089mm) (Max=2.54mm) (Preferred=0.381mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDDWYZJGB2LQES2KJBRWDM3SSPF4MHWN1NZALZUDLPNOJDTFWRILJ">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGATRVQGM0AL2ERUTL3KVE4OR3XBRUO2K1ERFSEDRRTTBGYBPBLN">Minimum Annular Ring (Minimum=0.076mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDCX3VD15ET2KYMPPN13TQYROGIMOU11XGUX1V4AMQZ3E3Q2X3MMCD">Hole Size Constraint (Min=0.2mm) (Max=6.3mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXKI0R1JYGRYICMQRIJKK3053XC5HBYWJA5JJIFJZW11C1BMMVFWG">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRI5WYCWWQTIHGNCTPTJNF4HRPJSV4GY0KHLTPHSWHJF0VDJZVTM">Minimum Solder Mask Sliver (Gap=0.1mm) (All),(All)</a></td>
+<td class="column2">5</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMTRR3EU3Z3HINFLE1LOVJCXG1ANDKP3MVYYZZGDK4QI3BPOUQBB">Silk To Solder Mask (Clearance=0.1mm) (IsPad),(All)</a></td>
+<td class="column2">5</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQZUKO4FUK1KAB0PKDARL3J1MNDLSMDQY2GQDHJNSY1DM1XY3Y4MJ">Silk to Silk (Clearance=0.1mm) (All),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDCXP5UJZR4MWSEV2UWPPUR45VNG5MZGWQGCRN5FHNFMSSQYPFBTLN">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDVABLNJU4KOXUO0O1B5IWGDDFYOS1QSHTBQNP15KWZYMI5OYHWJ3J">Board Clearance Constraint (Gap=0mm) (All)</a></td>
+<td class="column2">6</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDO4HKJKPJJPQSDM04FOFRLBOHNC2OBEYCTMRRN3BOJIJHDQPMEFOL">Room tof_board (Bounding Region = (98.171mm, 26.924mm, 103.759mm, 39.878mm) (InComponentClass('tof_board'))</a></td>
+<td class="column2">5</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDYY5PCPNDHXASOLDBFO3CED0R1DBCWPVRBU2YLRP4V0QWN2U5QEJ">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">23</td>
+</tr>
+</table><br><a name="IDXVPVDFWL5DAJH2OHHJ4IR5EGDJZMXWJ3I4JLK2E0RZ342ZDDH0VB"><h2>Warnings</h2></a><a name="IDYMCWNU3H22ZOE4PPJ02O0GLBOCF2YQMTVA5JVAI5SQR41ARTAY3C"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="warning">Zero hole size multi-layer pad(s) detected</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.472mil|Location2.X=3552.898mil|Location1.Y=1071.473mil|Location2.Y=1118.842mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.472mil|Location2.X=3552.898mil|Location1.Y=1071.473mil|Location2.Y=1118.842mil|Absolute=True">Pad P1-3(88.892mm,27.817mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net SDA</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.472mil|Location2.X=3552.898mil|Location1.Y=1020.291mil|Location2.Y=1067.661mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.472mil|Location2.X=3552.898mil|Location1.Y=1020.291mil|Location2.Y=1067.661mil|Absolute=True">Pad P1-4(88.892mm,26.517mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.472mil|Location2.X=3552.898mil|Location1.Y=1122.654mil|Location2.Y=1170.024mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.472mil|Location2.X=3552.898mil|Location1.Y=1122.654mil|Location2.Y=1170.024mil|Absolute=True">Pad P1-2(88.892mm,29.117mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net SCL</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.472mil|Location2.X=3552.898mil|Location1.Y=1173.835mil|Location2.Y=1221.205mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.472mil|Location2.X=3552.898mil|Location1.Y=1173.835mil|Location2.Y=1221.205mil|Absolute=True">Pad P1-1(88.892mm,30.417mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net VDD</acronym></a></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDRQNJXBCAZCZCPLVUSQC1JOO4BG3FEHXW2XSGYPM5HUQTOSATWLOP"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="warning">Multilayer Pads with 0 size Hole found</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.472mil|Location2.X=3552.898mil|Location1.Y=1071.473mil|Location2.Y=1118.842mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.472mil|Location2.X=3552.898mil|Location1.Y=1071.473mil|Location2.Y=1118.842mil|Absolute=True">Pad P1-3(88.892mm,27.817mm) on Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.472mil|Location2.X=3552.898mil|Location1.Y=1020.291mil|Location2.Y=1067.661mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.472mil|Location2.X=3552.898mil|Location1.Y=1020.291mil|Location2.Y=1067.661mil|Absolute=True">Pad P1-4(88.892mm,26.517mm) on Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.472mil|Location2.X=3552.898mil|Location1.Y=1122.654mil|Location2.Y=1170.024mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.472mil|Location2.X=3552.898mil|Location1.Y=1122.654mil|Location2.Y=1170.024mil|Absolute=True">Pad P1-2(88.892mm,29.117mm) on Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.472mil|Location2.X=3552.898mil|Location1.Y=1173.835mil|Location2.Y=1221.205mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.472mil|Location2.X=3552.898mil|Location1.Y=1173.835mil|Location2.Y=1221.205mil|Absolute=True">Pad P1-1(88.892mm,30.417mm) on Multi-Layer</acronym></a></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDRI5WYCWWQTIHGNCTPTJNF4HRPJSV4GY0KHLTPHSWHJF0VDJZVTM"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.1mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3443.879mil|Location2.X=3449.066mil|Location1.Y=1169.336mil|Location2.Y=1174.523mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3443.879mil|Location2.X=3449.066mil|Location1.Y=1169.336mil|Location2.Y=1174.523mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.1mm) Between Pad P1-1(88.892mm,30.417mm) on Multi-Layer And Pad P1-2(88.892mm,29.117mm) on Multi-Layer [Top Solder] Mask Sliver [0.097mm] / [Bottom Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3550.418mil|Location2.X=3555.605mil|Location1.Y=1190.407mil|Location2.Y=1195.593mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3550.418mil|Location2.X=3555.605mil|Location1.Y=1190.407mil|Location2.Y=1195.593mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.006mm &lt; 0.1mm) Between Pad P1-1(88.892mm,30.417mm) on Multi-Layer And Via (90.551mm,30.302mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.006mm] / [Bottom Solder] Mask Sliver [0.006mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3443.879mil|Location2.X=3449.066mil|Location1.Y=1118.155mil|Location2.Y=1123.341mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3443.879mil|Location2.X=3449.066mil|Location1.Y=1118.155mil|Location2.Y=1123.341mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.1mm) Between Pad P1-2(88.892mm,29.117mm) on Multi-Layer And Pad P1-3(88.892mm,27.817mm) on Multi-Layer [Top Solder] Mask Sliver [0.097mm] / [Bottom Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3443.879mil|Location2.X=3449.066mil|Location1.Y=1066.973mil|Location2.Y=1072.16mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3443.879mil|Location2.X=3449.066mil|Location1.Y=1066.973mil|Location2.Y=1072.16mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.1mm) Between Pad P1-3(88.892mm,27.817mm) on Multi-Layer And Pad P1-4(88.892mm,26.517mm) on Multi-Layer [Top Solder] Mask Sliver [0.097mm] / [Bottom Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3575.095mil|Location2.X=3580.282mil|Location1.Y=1190.407mil|Location2.Y=1195.593mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3575.095mil|Location2.X=3580.282mil|Location1.Y=1190.407mil|Location2.Y=1195.593mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.041mm &lt; 0.1mm) Between Pad U1-11(91.148mm,30.302mm) on Top Layer And Via (90.551mm,30.302mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.041mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDMTRR3EU3Z3HINFLE1LOVJCXG1ANDKP3MVYYZZGDK4QI3BPOUQBB"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.1mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3518.188mil|Location2.X=3521.812mil|Location1.Y=1176.022mil|Location2.Y=1179.647mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3518.188mil|Location2.X=3521.812mil|Location1.Y=1176.022mil|Location2.Y=1179.647mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Pad P1-1(88.892mm,30.417mm) on Multi-Layer And Track (89.408mm,25.4mm)(89.408mm,31.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3518.188mil|Location2.X=3521.812mil|Location1.Y=1124.841mil|Location2.Y=1128.466mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3518.188mil|Location2.X=3521.812mil|Location1.Y=1124.841mil|Location2.Y=1128.466mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Pad P1-2(88.892mm,29.117mm) on Multi-Layer And Track (89.408mm,25.4mm)(89.408mm,31.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3518.188mil|Location2.X=3521.812mil|Location1.Y=1073.66mil|Location2.Y=1077.285mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3518.188mil|Location2.X=3521.812mil|Location1.Y=1073.66mil|Location2.Y=1077.285mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Pad P1-3(88.892mm,27.817mm) on Multi-Layer And Track (89.408mm,25.4mm)(89.408mm,31.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3518.188mil|Location2.X=3521.812mil|Location1.Y=1022.479mil|Location2.Y=1026.104mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3518.188mil|Location2.X=3521.812mil|Location1.Y=1022.479mil|Location2.Y=1026.104mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Pad P1-4(88.892mm,26.517mm) on Multi-Layer And Track (89.408mm,25.4mm)(89.408mm,31.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3647.981mil|Location2.X=3653.168mil|Location1.Y=1201.745mil|Location2.Y=1206.932mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3647.981mil|Location2.X=3653.168mil|Location1.Y=1201.745mil|Location2.Y=1206.932mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.068mm &lt; 0.1mm) Between Pad U1-1(92.748mm,30.302mm) on Top Layer And Text "*" (92.513mm,31.509mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.068mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDQZUKO4FUK1KAB0PKDARL3J1MNDLSMDQY2GQDHJNSY1DM1XY3Y4MJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.1mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3670.636mil|Location2.X=3674.261mil|Location1.Y=1227.239mil|Location2.Y=1230.864mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3670.636mil|Location2.X=3674.261mil|Location1.Y=1227.239mil|Location2.Y=1230.864mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.1mm) Between Text "*" (92.513mm,31.509mm) on Top Overlay And Track (90.627mm,31.229mm)(93.269mm,31.229mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3670.188mil|Location2.X=3673.812mil|Location1.Y=1226.79mil|Location2.Y=1230.415mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3670.188mil|Location2.X=3673.812mil|Location1.Y=1226.79mil|Location2.Y=1230.415mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.1mm) Between Text "*" (92.513mm,31.509mm) on Top Overlay And Track (93.269mm,30.755mm)(93.269mm,31.229mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDVABLNJU4KOXUO0O1B5IWGDDFYOS1QSHTBQNP15KWZYMI5OYHWJ3J"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Board Clearance Constraint (Gap=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3443.174mil|Location2.X=3452.298mil|Location1.Y=1212.643mil|Location2.Y=1221.767mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3443.174mil|Location2.X=3452.298mil|Location1.Y=1212.643mil|Location2.Y=1221.767mil|Absolute=True">Board Outline Clearance(Outline Edge): (0.139mm &lt; 0.2mm) Between Board Edge And Pad P1-1(88.892mm,30.417mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3443.174mil|Location2.X=3452.298mil|Location1.Y=1161.462mil|Location2.Y=1170.586mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3443.174mil|Location2.X=3452.298mil|Location1.Y=1161.462mil|Location2.Y=1170.586mil|Absolute=True">Board Outline Clearance(Outline Edge): (0.139mm &lt; 0.2mm) Between Board Edge And Pad P1-2(88.892mm,29.117mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3443.174mil|Location2.X=3452.298mil|Location1.Y=1110.281mil|Location2.Y=1119.405mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3443.174mil|Location2.X=3452.298mil|Location1.Y=1110.281mil|Location2.Y=1119.405mil|Absolute=True">Board Outline Clearance(Outline Edge): (0.139mm &lt; 0.2mm) Between Board Edge And Pad P1-3(88.892mm,27.817mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3443.174mil|Location2.X=3452.298mil|Location1.Y=1059.099mil|Location2.Y=1068.223mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3443.174mil|Location2.X=3452.298mil|Location1.Y=1059.099mil|Location2.Y=1068.223mil|Absolute=True">Board Outline Clearance(Outline Edge): (0.139mm &lt; 0.2mm) Between Board Edge And Pad P1-4(88.892mm,26.517mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3794.519mil|Location2.X=3803.643mil|Location1.Y=999.706mil|Location2.Y=1008.83mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3794.519mil|Location2.X=3803.643mil|Location1.Y=999.706mil|Location2.Y=1008.83mil|Absolute=True">Board Outline Clearance(Outline Edge): (0.186mm &lt; 0.2mm) Between Board Edge And Text "R2" (95.949mm,26.343mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.343mil|Location2.X=3522.592mil|Location1.Y=1121.875mil|Location2.Y=1128.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.343mil|Location2.X=3522.592mil|Location1.Y=1121.875mil|Location2.Y=1128.125mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.2mm) Between Board Edge And Track (89.408mm,25.4mm)(89.408mm,31.75mm) on Top Overlay </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDO4HKJKPJJPQSDM04FOFRLBOHNC2OBEYCTMRRN3BOJIJHDQPMEFOL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Room tof_board (Bounding Region = (98.171mm, 26.924mm, 103.759mm, 39.878mm) (InComponentClass('tof_board'))</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3553.506mil|Location2.X=4085mil|Location1.Y=1022.5mil|Location2.Y=1570mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3553.506mil|Location2.X=4085mil|Location1.Y=1022.5mil|Location2.Y=1570mil|Absolute=True">Room Definition: Between Component U1-VL53L1CBV0FY/1 (91.948mm,28.702mm) on Top Layer And Room tof_board (Bounding Region = (98.171mm, 26.924mm, 103.759mm, 39.878mm) (InComponentClass('tof_board')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.472mil|Location2.X=4085mil|Location1.Y=1020.291mil|Location2.Y=1570mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.472mil|Location2.X=4085mil|Location1.Y=1020.291mil|Location2.Y=1570mil|Absolute=True">Room Definition: Between Room tof_board (Bounding Region = (98.171mm, 26.924mm, 103.759mm, 39.878mm) (InComponentClass('tof_board')) And SIP Component P1-4pos_conn_tof (88.892mm,30.417mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.063mil|Location2.X=4085mil|Location1.Y=1060mil|Location2.Y=1570mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.063mil|Location2.X=4085mil|Location1.Y=1060mil|Location2.Y=1570mil|Absolute=True">Room Definition: Between Room tof_board (Bounding Region = (98.171mm, 26.924mm, 103.759mm, 39.878mm) (InComponentClass('tof_board')) And SMT Small Component C1-C0402C104K8PACTU (94.234mm,29.845mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3744.046mil|Location2.X=4085mil|Location1.Y=1060mil|Location2.Y=1570mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3744.046mil|Location2.X=4085mil|Location1.Y=1060mil|Location2.Y=1570mil|Absolute=True">Room Definition: Between Room tof_board (Bounding Region = (98.171mm, 26.924mm, 103.759mm, 39.878mm) (InComponentClass('tof_board')) And SMT Small Component C2-GRM155R60J475ME47D (95.885mm,29.845mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3696.907mil|Location2.X=4085mil|Location1.Y=1060mil|Location2.Y=1570mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\darre\Documents\rovables-space-inspection\hardware\electrical\ToF_board\tof_board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3696.907mil|Location2.X=4085mil|Location1.Y=1060mil|Location2.Y=1570mil|Absolute=True">Room Definition: Between Room tof_board (Bounding Region = (98.171mm, 26.924mm, 103.759mm, 39.878mm) (InComponentClass('tof_board')) And SMT Small Component R1-ERA-2AEB103X (94.851mm,27.855mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
