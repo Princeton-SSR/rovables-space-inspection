@@ -35,6 +35,8 @@ void setup(void) {
   radio.setPALevel(RF24_PA_HIGH);
   network.begin(this_rov);
 
+  
+
 }
  
 void loop(void) {
