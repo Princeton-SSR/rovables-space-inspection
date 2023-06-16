@@ -18,10 +18,14 @@ struct message_accel {
   double z;
 };
 
+
 const uint16_t this_rov = 01; 
+const uint16_t rec_rov = 00;
 
 Adafruit_MPU6050 mpu;
-RF24 radio(2, 10);   // nRF24L01 (CE,CSN)
+
+// Manually setting clocking frequency for rovable is 2 MHz
+RF24 radio(2, 10, 2000000);   // nRF24L01 (CE,CSN)
 RF24Network network(radio);
 sensors_event_t a, g, temp;
 
@@ -74,7 +78,7 @@ void loop() {
   message_accel message = {a.acceleration.x, a.acceleration.y, a.acceleration.z};
   if (network.write(header, &message, sizeof(message_accel))) {
     SerialUSB.println("Message Sent");
-    SerialUSB.println(message.x);
+    SerialUSB.println(message.y);
     delay(10);
   } else {
     SerialUSB.println("Message Failed to Send!");

@@ -13,7 +13,7 @@ constexpr float SD_VEL  = 200  / GRAVITY;    //  mm/s   / g-force   Standard dev
 constexpr float ALPHA   = 0.5;               //                     Gain of heading update - See example "output" for more information.
 
 
-RF24 radio(5, 2);               // nRF24L01 (CE,CSN)
+RF24 radio(2, 10);               // nRF24L01 (CE,CSN) // Using the rovable as a base station here
 
 RF24Network network(radio);     // Network uses that radio
 const uint16_t this_rov = 00;  // Address of our node in Octal format (04, 031, etc)

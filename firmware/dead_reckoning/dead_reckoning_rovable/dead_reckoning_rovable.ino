@@ -2,7 +2,6 @@
 #include <Adafruit_Sensor.h>
 #include <RF24Network.h>
 #include <RF24.h>
-#include <accIntegral.h>
 
 #define  M1_DIR   A2 
 #define  M1_PWM   9 
@@ -13,29 +12,52 @@
 #define ENC1_LED  8
 #define ENC2_LED  6
 
-struct message_IMU {
-  double ax; 
-  double ay; 
-  double az; 
-
-  //double gx; 
-  //double gy; 
-  //double gz; 
+struct message_accel {
+  double x;
+  double y;
+  double z;
 };
 
-accIntegral fusion;
+// All the motions 
+void runMotor(int rightSpeed, int leftSpeed) {
+  analogWrite(M1_PWM, rightSpeed);
+  analogWrite(M2_PWM, leftSpeed);
+}
+void moveForward(int rightSpeed, int leftSpeed) {
+  digitalWrite(M1_DIR, 0);
+  digitalWrite(M2_DIR, 1);
+  
+  runMotor(rightSpeed, leftSpeed);
+}
+void moveBackward() {
+  digitalWrite(M1_DIR, 1);
+  digitalWrite(M2_DIR, 0);
 
-// Filter coefficients                       //  Unit           
-constexpr float GRAVITY = 9.81e3;            //  mm/s^2             Magnitude of gravity at rest. Determines units of velocity. [UNITS MUST MATCH ACCELERATION]
-constexpr float SD_ACC  = 1000 / GRAVITY;    //  mm/s^2 / g-force   Standard deviation of acceleration. Deviations from zero are suppressed.
-constexpr float SD_VEL  = 200  / GRAVITY;    //  mm/s   / g-force   Standard deviation of velocity. Deviations from target value are suppressed.
-constexpr float ALPHA   = 0.5;               //                     Gain of heading update - See example "output" for more information.
+  runMotor(75, 75);
+}
+void turnRight(){ 
+  digitalWrite(M1_DIR, 1);
+  digitalWrite(M2_DIR, 1);
+
+  runMotor(75, 75);
+}
+void turnLeft(){ 
+  digitalWrite(M1_DIR, 0);
+  digitalWrite(M2_DIR, 0);
+
+  runMotor(75, 75);
+}
+
+
+
 
 const uint16_t this_rov = 01; 
-
+const uint16_t rec_rov = 00;
 
 Adafruit_MPU6050 mpu;
-RF24 radio(2, 10);   // nRF24L01 (CE,CSN)
+
+// Manually setting clocking frequency for rovable is 2 MHz
+RF24 radio(2, 10, 2000000);   // nRF24L01 (CE,CSN)
 RF24Network network(radio);
 sensors_event_t a, g, temp;
 
@@ -43,9 +65,8 @@ void setup() {
   // put your setup code here, to run once:
   SerialUSB.begin(115200);
 
-  SerialUSB.println("Beginning Dead Reckoning. . .");
+  SerialUSB.println("Beginning Rovables Functional Check. . .");
 
-  fusion.setup();
 
   SerialUSB.println("Checking MPU6050. . .");
   if (!mpu.begin()) {
@@ -59,7 +80,7 @@ void setup() {
   mpu.setAccelerometerRange(MPU6050_RANGE_2_G);
   mpu.setGyroRange(MPU6050_RANGE_250_DEG);
   mpu.setFilterBandwidth(MPU6050_BAND_10_HZ);
-
+  
   SerialUSB.println("Checking NRF24. . .");
   if (!radio.begin()) {
     SerialUSB.println("Failed to initialize NRF24 chip");
@@ -84,43 +105,16 @@ void setup() {
 }
 void loop() {
   network.update();
-  
   mpu.getEvent(&a, &g, &temp);
-  
-  //Get Velocity 
-  vec3_t accel = {a.acceleration.x, a.acceleration.y, a.acceleration.z};
-  vec3_t gyro = {g.gyro.x, g.gyro.y, g.gyro.z};
-
-  // Update heading and velocity estimate:
-  
-      // known measured velocity (target state). Estimate will be forced towards this vector
-  vec3_t vel_t = {0,0,0};
-  vel_t /= GRAVITY;                         // must have unit: g-force * second
-
-  /* note: all coefficients are optional and have default values */
-  fusion.update( gyro, accel, vel_t, SD_ACC, SD_VEL, ALPHA ); 
-
-  // obtain velocity estimate
-  vec3_t vel = fusion.getVel() * GRAVITY;   // scale by gravity for desired units
-
-  // Display velocity components: [view with serial plotter]
-
-  SerialUSB.print( vel.x, 2 );
-  SerialUSB.print( " " );
-  SerialUSB.print( vel.y, 2 );
-  SerialUSB.print( " " );
-  SerialUSB.print( vel.z, 2 );  
-  SerialUSB.println();
-  
-  /*
-  RF24NetworkHeader header(00); // Header denots intended recipient
-  message_IMU message = {a.acceleration.x, a.acceleration.y, a.acceleration.z};
-  if (network.write(header, &message, sizeof(message_IMU))) {
+  RF24NetworkHeader header(rec_rov); // Header denots intended recipient
+  message_accel message = {a.acceleration.x, a.acceleration.y, a.acceleration.z};
+  moveForward(75, 75); 
+  //moveForwardSkew(80, 75, 1000); 
+  if (network.write(header, &message, sizeof(message_accel))) {
     SerialUSB.println("Message Sent");
-    SerialUSB.println(message.ax);
+    SerialUSB.println(message.y);
     delay(10);
   } else {
     SerialUSB.println("Message Failed to Send!");
   }
-  */
 }

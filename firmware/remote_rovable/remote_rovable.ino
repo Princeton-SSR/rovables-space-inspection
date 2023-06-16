@@ -12,7 +12,7 @@
 #define ENC1_LED  8
 #define ENC2_LED  6
 
-RF24 radio(2, 10);   // nRF24L01 (CE,CSN)
+RF24 radio(2, 10, 2000000);   // nRF24L01 (CE,CSN)
 RF24Network network(radio);
 const uint16_t this_rov = 00;
 

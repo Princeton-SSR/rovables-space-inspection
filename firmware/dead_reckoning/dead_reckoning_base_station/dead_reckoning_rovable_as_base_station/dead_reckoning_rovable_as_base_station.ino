@@ -50,6 +50,10 @@ void loop(void) {
     delay(50);
   }
   else{
-    SerialUSB.println("Network not available"); 
+    SerialUSB.print("NA");
+    SerialUSB.print(",");
+    SerialUSB.print("NA");
+    SerialUSB.print(",");
+    SerialUSB.println("NA");
   }
 }
