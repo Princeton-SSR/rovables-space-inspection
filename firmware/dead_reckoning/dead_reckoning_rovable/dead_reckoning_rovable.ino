@@ -12,10 +12,14 @@
 #define ENC1_LED  8
 #define ENC2_LED  6
 
-struct message_accel {
-  double x;
-  double y;
-  double z;
+struct message_IMU {
+  double ax;
+  double ay;
+  double az;
+  double gx; 
+  double gy; 
+  double gz; 
+
 };
 
 // All the motions 
@@ -107,12 +111,10 @@ void loop() {
   network.update();
   mpu.getEvent(&a, &g, &temp);
   RF24NetworkHeader header(rec_rov); // Header denots intended recipient
-  message_accel message = {a.acceleration.x, a.acceleration.y, a.acceleration.z};
-  moveForward(75, 75); 
-  //moveForwardSkew(80, 75, 1000); 
-  if (network.write(header, &message, sizeof(message_accel))) {
+  message_IMU message = {a.acceleration.x, a.acceleration.y, a.acceleration.z, g.gyro.x, g.gyro.y, g.gyro.z};
+  //moveForward(74, 70); 
+  if (network.write(header, &message, sizeof(message_IMU))) {
     SerialUSB.println("Message Sent");
-    SerialUSB.println(message.y);
     delay(10);
   } else {
     SerialUSB.println("Message Failed to Send!");
