@@ -12,11 +12,47 @@
 #define ENC1_LED  8
 #define ENC2_LED  6
 
-struct message_accel {
-  double x;
-  double y;
-  double z;
+struct message_IMU {
+  double ax;
+  double ay;
+  double az;
+  double gx; 
+  double gy; 
+  double gz; 
+
 };
+
+// All the motions 
+void runMotor(int rightSpeed, int leftSpeed) {
+  analogWrite(M1_PWM, rightSpeed);
+  analogWrite(M2_PWM, leftSpeed);
+}
+void moveForward(int rightSpeed, int leftSpeed) {
+  digitalWrite(M1_DIR, 0);
+  digitalWrite(M2_DIR, 1);
+  
+  runMotor(rightSpeed, leftSpeed);
+}
+void moveBackward() {
+  digitalWrite(M1_DIR, 1);
+  digitalWrite(M2_DIR, 0);
+
+  runMotor(75, 75);
+}
+void turnRight(){ 
+  digitalWrite(M1_DIR, 1);
+  digitalWrite(M2_DIR, 1);
+
+  runMotor(75, 75);
+}
+void turnLeft(){ 
+  digitalWrite(M1_DIR, 0);
+  digitalWrite(M2_DIR, 0);
+
+  runMotor(75, 75);
+}
+
+
 
 
 const uint16_t this_rov = 01; 
@@ -74,11 +110,11 @@ void setup() {
 void loop() {
   network.update();
   mpu.getEvent(&a, &g, &temp);
-  RF24NetworkHeader header(00); // Header denots intended recipient
-  message_accel message = {a.acceleration.x, a.acceleration.y, a.acceleration.z};
-  if (network.write(header, &message, sizeof(message_accel))) {
+  RF24NetworkHeader header(rec_rov); // Header denots intended recipient
+  message_IMU message = {a.acceleration.x, a.acceleration.y, a.acceleration.z, g.gyro.x, g.gyro.y, g.gyro.z};
+  moveForward(70, 70); 
+  if (network.write(header, &message, sizeof(message_IMU))) {
     SerialUSB.println("Message Sent");
-    SerialUSB.println(message.y);
     delay(10);
   } else {
     SerialUSB.println("Message Failed to Send!");

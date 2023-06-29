@@ -24,7 +24,8 @@ void setup(void) {
 //     //don't do anything
 //  }
   SerialUSB.println("Starting Bayes Station");
- 
+  SerialUSB.println("Checking NRF24. . .");
+
   if (!radio.begin()) {
     SerialUSB.println(F("Radio hardware not responding!"));
     while (1) {
@@ -35,12 +36,15 @@ void setup(void) {
   radio.setPALevel(RF24_PA_HIGH);
   network.begin(this_rov);
 
+SerialUSB.println("NRF24 Responsive!");
+SerialUSB.println("------------------------------------------");
+
 }
+
  
 void loop(void) {
   network.update();                  // Check the network regularly
   if (network.available()) {      // Is there anything ready for us?
- 
     RF24NetworkHeader header;        // If so, grab it and print it out
     message_accel message;
     network.read(header, &message, sizeof(message_accel));

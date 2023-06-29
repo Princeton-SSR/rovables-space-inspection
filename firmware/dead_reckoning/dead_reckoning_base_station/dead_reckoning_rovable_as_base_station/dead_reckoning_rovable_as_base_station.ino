@@ -8,10 +8,14 @@ RF24 radio(2, 10, 2000000);  // nRF24L01 (CE,CSN) For arduino zero base station 
 RF24Network network(radio);    // Network uses that radio
 const uint16_t this_rov = 00;  // Address of our node in Octal format (04, 031, etc)
 
-struct message_accel {
-  double x;
-  double y;
-  double z;
+struct message_IMU {
+  double ax;
+  double ay;
+  double az;
+  double gx; 
+  double gy; 
+  double gz; 
+
 };
 
 void setup(void) {
@@ -35,21 +39,24 @@ void loop(void) {
   if (network.available()) {  // Is there anything ready for us?
 
     RF24NetworkHeader header;  // If so, grab it and print it out
-    message_accel message;
-    network.read(header, &message, sizeof(message_accel));
+    message_IMU message;
+    network.read(header, &message, sizeof(message_IMU));
 
     // message.x = sq(message.x);
     // message.y = sq(message.y);
     // message.z = sq(message.z - 9.84);
 
-    SerialUSB.print(message.x);
+    SerialUSB.print(message.ax);
     SerialUSB.print(",");
-    SerialUSB.print(message.y);
+    SerialUSB.print(message.ay);
     SerialUSB.print(",");
-    SerialUSB.println(message.z);
+    SerialUSB.print(message.az);
+    SerialUSB.print(",");
+    SerialUSB.print(message.gx);
+    SerialUSB.print(",");
+    SerialUSB.print(message.gy);
+    SerialUSB.print(",");
+    SerialUSB.println(message.gz);
     delay(50);
-  }
-  else{
-    SerialUSB.println("Network not available"); 
   }
 }
