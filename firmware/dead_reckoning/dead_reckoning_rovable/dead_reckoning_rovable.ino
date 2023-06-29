@@ -112,7 +112,7 @@ void loop() {
   mpu.getEvent(&a, &g, &temp);
   RF24NetworkHeader header(rec_rov); // Header denots intended recipient
   message_IMU message = {a.acceleration.x, a.acceleration.y, a.acceleration.z, g.gyro.x, g.gyro.y, g.gyro.z};
-  //moveForward(74, 70); 
+  moveForward(70, 70); 
   if (network.write(header, &message, sizeof(message_IMU))) {
     SerialUSB.println("Message Sent");
     delay(10);
