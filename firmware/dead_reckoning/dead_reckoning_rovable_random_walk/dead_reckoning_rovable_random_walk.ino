@@ -35,11 +35,11 @@ int moveForward(int rightSpeed, int leftSpeed) {
   runMotor(rightSpeed, leftSpeed);
   return 1;
 }
-int moveBackward() {
+int moveBackward(int rightSpeed, int leftSpeed) {
   digitalWrite(M1_DIR, 1);
   digitalWrite(M2_DIR, 0);
 
-  runMotor(75, 75);
+  runMotor(rightSpeed, leftSpeed);
   return 2; 
 }
 int turnRight(int rightSpeed, int leftSpeed){ 
@@ -49,14 +49,34 @@ int turnRight(int rightSpeed, int leftSpeed){
   runMotor(rightSpeed, leftSpeed);
   return 3; 
 }
-int turnLeft(){ 
+int turnLeft(int rightSpeed, int leftSpeed){ 
   digitalWrite(M1_DIR, 0);
   digitalWrite(M2_DIR, 0);
 
-  runMotor(75, 75);
+  runMotor(rightSpeed, leftSpeed);
   return 4; 
 }
 
+
+int doRandomWalk() {
+  int dir = random(1,10);
+  //int dir = 3; 
+  
+  int rcControl; 
+  if (dir == 1) {
+    rcControl = turnLeft(75, 75);
+    delay(random(500,1000)); 
+  } else if (dir == 2) {
+    rcControl = turnRight(75,75);
+    delay(random(500,1000)); 
+  }
+  else{
+    rcControl = moveForward(75, 75);
+    delay(random(1000,2000)); 
+  }
+  return rcControl; 
+  
+}
 
 
 
@@ -70,8 +90,10 @@ Adafruit_MPU6050 mpu;
 RF24 radio(2, 10, 2000000);   // nRF24L01 (CE,CSN)
 RF24Network network(radio);
 sensors_event_t a, g, temp;
-
+int iteration = 0; 
+int dir = 3; 
 void setup() {
+  
   // put your setup code here, to run once:
   SerialUSB.begin(115200);
 
@@ -119,8 +141,22 @@ void loop() {
   mpu.getEvent(&a, &g, &temp);
   RF24NetworkHeader header(rec_rov); // Header denots intended recipient
   //rcControl = moveForward(71, 75); 
-  rcControl = turnRight(75, 75); 
-
+  //rcControl = turnRight(75, 75); 
+  SerialUSB.println("--------");
+  SerialUSB.println(iteration);
+  SerialUSB.println(dir);
+  if (iteration%20 == 0){
+    dir = random(1,7);    
+  }
+  
+  if (dir == 1) {
+    rcControl = turnLeft(75, 75);
+  } else if (dir == 2) {
+    rcControl = turnRight(75,75);
+  }
+  else{
+    rcControl = moveForward(75, 75);
+  }
   message_IMU message = {a.acceleration.x, a.acceleration.y, a.acceleration.z, g.gyro.x, g.gyro.y, g.gyro.z, rcControl};
   if (network.write(header, &message, sizeof(message_IMU))) {
     SerialUSB.println("Message Sent");
@@ -128,4 +164,12 @@ void loop() {
   } else {
     SerialUSB.println("Message Failed to Send!");
   }
+  
+  if (iteration%50 == 0){
+    runMotor(0,0);
+    delay(1000); 
+  }
+  iteration++;
+  
+  
 }

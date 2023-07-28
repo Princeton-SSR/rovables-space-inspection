@@ -15,6 +15,7 @@ struct message_IMU {
   double gx; 
   double gy; 
   double gz; 
+  int rcControl; 
 
 };
 
@@ -56,7 +57,11 @@ void loop(void) {
     SerialUSB.print(",");
     SerialUSB.print(message.gy);
     SerialUSB.print(",");
-    SerialUSB.println(message.gz);
-    delay(50);
+    SerialUSB.print(message.gz);
+    SerialUSB.print(",");
+    SerialUSB.print(message.rcControl); 
+    SerialUSB.print(",");
+    SerialUSB.println(millis());
+    delay(100);
   }
 }
