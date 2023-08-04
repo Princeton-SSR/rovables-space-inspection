@@ -49,6 +49,8 @@ void loop(void) {
 
     RF24NetworkHeader headerIMU;  // If so, grab it and print it out
     message_IMU messageIMU;
+    
+    /*
     RF24NetworkHeader header(mov_rov); // Header denots intended recipient
     message_StartStop messageSS; 
 
@@ -57,6 +59,7 @@ void loop(void) {
       messageSS = {recSSMes};
       network.write(header, &messageSS, sizeof(message_StartStop)); 
     }
+    */
 
     
 
