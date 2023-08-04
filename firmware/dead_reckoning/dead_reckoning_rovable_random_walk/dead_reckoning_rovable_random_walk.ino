@@ -20,8 +20,14 @@ struct message_IMU {
   double gy; 
   double gz; 
   int rcControl; 
+  int camControl; 
 
 };
+
+struct message_StartStop{
+  int startFlag; 
+};
+
 
 // All the motions 
 void runMotor(int rightSpeed, int leftSpeed) {
@@ -80,9 +86,10 @@ int doRandomWalk() {
 
 
 
-const uint16_t this_rov = 01; 
-const uint16_t rec_rov = 00;
+const uint16_t mov_rov = 01; 
+const uint16_t base_rov = 00;
 int rcControl = 0; // By default the robot is stationary 
+int camControl = 0; // 
 
 Adafruit_MPU6050 mpu;
 
@@ -92,6 +99,8 @@ RF24Network network(radio);
 sensors_event_t a, g, temp;
 int iteration = 0; 
 int dir = 3; 
+int startFlag = 0; 
+
 void setup() {
   
   // put your setup code here, to run once:
@@ -123,53 +132,74 @@ void setup() {
 
   radio.setPALevel(RF24_PA_HIGH);
   radio.setChannel(100);
-  network.begin(this_rov);
+  network.begin(mov_rov);
 
   SerialUSB.println("NRF24 Responsive!");
   SerialUSB.println("------------------------------------------");
 
-//  SerialUSB.println("Turning Rovable Counter-clockwise!");
-//  digitalWrite(M1_DIR, 0);
-//  digitalWrite(M2_DIR, 0);  
-//  analogWrite(M1_PWM, 75);
-//  analogWrite(M2_PWM, 75);
-
-
 }
+
 void loop() {
   network.update();
-  mpu.getEvent(&a, &g, &temp);
-  RF24NetworkHeader header(rec_rov); // Header denots intended recipient
-  //rcControl = moveForward(71, 75); 
-  //rcControl = turnRight(75, 75); 
-  SerialUSB.println("--------");
-  SerialUSB.println(iteration);
-  SerialUSB.println(dir);
-  if (iteration%20 == 0){
-    dir = random(1,7);    
+  if (network.available()){
+
+    /*
+    //Reading for start and stop
+    RF24NetworkHeader headerSS; 
+    message_StartStop messageSS;
+    network.read(headerSS, &messageSS, sizeof(message_StartStop));
+    startFlag = messageSS.startFlag; 
+    SerialUSB.println(startFlag);
+    */
+    //Reading IMU
+    mpu.getEvent(&a, &g, &temp);
+    RF24NetworkHeader header(base_rov); // Header denots intended recipient
+    
+    //if (startFlag == 0) {
+      if (iteration%20 == 0){
+        dir = random(1,10);    
+      }
+        
+      if (dir == 1) {
+        //rcControl = turnLeft(75, 75);
+        moveForward(75, 75); 
+        rcControl = 4;
+      } else if (dir == 2) {
+        //rcControl = turnRight(75,75);
+        moveBackward(75, 75); 
+        rcControl = 3;
+      }
+      else{
+        //rcControl = moveForward(75, 70);
+        turnLeft(75, 75);
+        rcControl = 1; 
+      }
+      message_IMU message = {a.acceleration.x, a.acceleration.y, a.acceleration.z, g.gyro.x, g.gyro.y, g.gyro.z, rcControl, camControl};
+      camControl = 0; 
+      if (network.write(header, &message, sizeof(message_IMU))) {
+        SerialUSB.println("Message Sent");
+        delay(10);
+      } else {
+        SerialUSB.println("Message Failed to Send!");
+      }
+      
+      if (iteration%50 == 0){
+        runMotor(0,0);
+        delay(1000);
+        camControl = 1;  
+      }
+      iteration++;
+    //}
+    
+
   }
+
+
+
   
-  if (dir == 1) {
-    rcControl = turnLeft(75, 75);
-  } else if (dir == 2) {
-    rcControl = turnRight(75,75);
-  }
-  else{
-    rcControl = moveForward(75, 75);
-  }
-  message_IMU message = {a.acceleration.x, a.acceleration.y, a.acceleration.z, g.gyro.x, g.gyro.y, g.gyro.z, rcControl};
-  if (network.write(header, &message, sizeof(message_IMU))) {
-    SerialUSB.println("Message Sent");
-    delay(10);
-  } else {
-    SerialUSB.println("Message Failed to Send!");
-  }
   
-  if (iteration%50 == 0){
-    runMotor(0,0);
-    delay(1000); 
-  }
-  iteration++;
+  
+  
   
   
 }
