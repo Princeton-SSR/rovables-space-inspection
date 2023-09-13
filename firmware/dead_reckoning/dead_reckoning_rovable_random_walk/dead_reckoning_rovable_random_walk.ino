@@ -89,6 +89,7 @@ const uint16_t mov_rov = 01;
 const uint16_t base_rov = 00;
 int rcControl = 0; // By default the robot is stationary 
 int camControl = 0; 
+int startFlag = 0; 
 
 Adafruit_MPU6050 mpu;
 
@@ -148,20 +149,34 @@ void loop() {
   RF24NetworkHeader header(base_rov); // Header denots intended recipient
   //rcControl = moveForward(71, 75); 
   //rcControl = turnRight(75, 75); 
-  SerialUSB.println("--------");
-  SerialUSB.println(iteration);
-  SerialUSB.println(dir);
+  
+  if (network.available()){
+    RF24NetworkHeader headerSS;  // If so, grab it and print it out
+    message_StartStop messageSS;
+    network.read(headerSS, &messageSS, sizeof(message_StartStop));
+    startFlag = messageSS.startFlag; 
+  }
+  SerialUSB.println(startFlag); 
+
+
+
   if (iteration%20 == 0){
     dir = random(1,7);    
   }
   
   if (dir == 1) {
-    rcControl = turnLeft(75, 75);
+    //rcControl = turnLeft(75, 75);
+    moveForward(75, 75); 
+    rcControl = 3; 
   } else if (dir == 2) {
-    rcControl = turnRight(75,75);
+    //rcControl = turnRight(75,75);
+    moveBackward(75, 75); 
+    rcControl = 4; 
   }
   else{
-    rcControl = moveForward(75, 75);
+    //rcControl = moveForward(75, 75);
+    turnLeft(75, 75);
+    rcControl = 1; 
   }
   message_IMU message = {a.acceleration.x, a.acceleration.y, a.acceleration.z, g.gyro.x, g.gyro.y, g.gyro.z, rcControl, camControl};
   camControl = 0; 
@@ -172,7 +187,7 @@ void loop() {
     SerialUSB.println("Message Failed to Send!");
   }
   
-  if (iteration%50 == 0){
+  if (iteration%10 == 0){
     runMotor(0,0);
     delay(1000); 
     camControl = 1; 

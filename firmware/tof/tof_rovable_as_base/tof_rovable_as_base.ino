@@ -27,6 +27,30 @@ struct message_StartStop{
 };
 
 
+struct message_t {
+
+  uint16_t left;
+  uint16_t middle;
+  uint16_t right;
+
+};
+
+
+/*
+struct message_t {
+  uint16_t energyt;
+  float belief;
+  uint16_t alpha;
+  uint16_t beta;
+  uint16_t left;
+  uint16_t middle;
+  uint16_t right;
+  uint32_t coll_time;
+  uint32_t walk_time;
+};
+*/
+
+
 void setup(void) {
   SerialUSB.begin(115200);
   while (!SerialUSB){}; 
@@ -47,45 +71,22 @@ void loop(void) {
   network.update();           // Check the network regularly
   if (network.available()) {  // Is there anything ready for us?
 
-    RF24NetworkHeader headerIMU;  // If so, grab it and print it out
-    message_IMU messageIMU;
-    
-    
-    RF24NetworkHeader header(mov_rov); // Header denots intended recipient
-    message_StartStop messageSS; 
+    RF24NetworkHeader headerTOF;  // If so, grab it and print it out
+    message_t messageTOF;    
 
-    if (SerialUSB.available()){
-      int recSSMes = SerialUSB.parseInt(); 
-      messageSS = {recSSMes};
-      network.write(header, &messageSS, sizeof(message_StartStop)); 
-    }
-  
-
-    
-
-    network.read(headerIMU, &messageIMU, sizeof(message_IMU));
+    network.read(headerTOF, &messageTOF, sizeof(message_t));
 
     // message.x = sq(message.x);
     // message.y = sq(message.y);
     // message.z = sq(message.z - 9.84);
 
-    SerialUSB.print(messageIMU.ax);
-    SerialUSB.print(",");
-    SerialUSB.print(messageIMU.ay);
-    SerialUSB.print(",");
-    SerialUSB.print(messageIMU.az);
-    SerialUSB.print(",");
-    SerialUSB.print(messageIMU.gx);
-    SerialUSB.print(",");
-    SerialUSB.print(messageIMU.gy);
-    SerialUSB.print(",");
-    SerialUSB.print(messageIMU.gz);
-    SerialUSB.print(",");
-    SerialUSB.print(messageIMU.rcControl); 
-    SerialUSB.print(",");
-    SerialUSB.print(messageIMU.camControl);
-    SerialUSB.print(",");
-    SerialUSB.println(millis());
+    SerialUSB.println(messageTOF.left);
+    SerialUSB.println(messageTOF.middle);
+    SerialUSB.println(messageTOF.right);
+    SerialUSB.println();
+    
+    SerialUSB.println();
     delay(100);
   }
 }
+
