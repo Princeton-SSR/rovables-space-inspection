@@ -37,7 +37,6 @@ struct message_tof {
 
 };
 
-
 /*
 Low pass values for the ToF boards
 */
@@ -64,30 +63,7 @@ bool FALL_RED = false;
 unsigned long coll_avoid_start = 0;
 bool timer_start = false;
 
-
-void coll_avoid_baitenberg() {
-  /*
-  Collision avoidance function which can be called at any time (non-blocking) it sets global variables that indicate whether or not something is in front of the rover
-  */
-
-  //Booleans to state if something is within the threshold left middle or right
-  bool bool_m = false;
-  bool bool_l = false;
-  bool bool_r = false;
-  if (tof_left.dataReady() && tof_right.dataReady() && tof_middle.dataReady()) {//only enter function if data is ready
-    //read left tof sensor and check if it is in the threshold, the read(false) is non-blocking 
-    tof_left.read(false);
-    distance_l = tof_left.ranging_data.range_mm;
-    if (distance_l <= caThresh) { bool_l = true; }
-    //read right tof sensor and check if it is in the threshold, the read(false) is non-blocking 
-    tof_right.read(false);
-    distance_r = tof_right.ranging_data.range_mm;
-    if (distance_r <= caThresh) { bool_r = true; }
-    //read middle tof sensor and check if it is in the threshold, the read(false) is non-blocking 
-    tof_middle.read(false);
-    distance_m = tof_middle.ranging_data.range_mm;
-    if (distance_m <= caThresh) { bool_m = true; }
-
+void LowPassFilterTof(){
     //Moving average filters on readings
     SUM_L = SUM_L - READINGS_L[INDEX_L];      // Remove the oldest entry from the sum
     VALUE_L = distance_l;
@@ -114,6 +90,33 @@ void coll_avoid_baitenberg() {
     distance_l = SUM_L / WINDOW_SIZE_L;
     distance_m = SUM_M / WINDOW_SIZE_M;
     distance_r = SUM_R / WINDOW_SIZE_R;
+}
+
+
+void coll_avoid() {
+  /*
+  Collision avoidance function which can be called at any time (non-blocking) it sets global variables that indicate whether or not something is in front of the rover
+  */
+
+  //Booleans to state if something is within the threshold left middle or right
+  bool bool_m = false;
+  bool bool_l = false;
+  bool bool_r = false;
+  if (tof_left.dataReady() && tof_right.dataReady() && tof_middle.dataReady()) {//only enter function if data is ready
+    //read left tof sensor and check if it is in the threshold, the read(false) is non-blocking 
+    tof_left.read(false);
+    distance_l = tof_left.ranging_data.range_mm;
+    if (distance_l <= caThresh) { bool_l = true; }
+    //read right tof sensor and check if it is in the threshold, the read(false) is non-blocking 
+    tof_right.read(false);
+    distance_r = tof_right.ranging_data.range_mm;
+    if (distance_r <= caThresh) { bool_r = true; }
+    //read middle tof sensor and check if it is in the threshold, the read(false) is non-blocking 
+    tof_middle.read(false);
+    distance_m = tof_middle.ranging_data.range_mm;
+    if (distance_m <= caThresh) { bool_m = true; }
+
+    LowPassFilterTof();
   } 
 
     // all code below is action on coll avoid sensor data, so measure it
@@ -125,27 +128,13 @@ void coll_avoid_baitenberg() {
       coll_block = true;                            //set global variable true "I see something"
         //do similar thing on the left
 
-      /*
-      Stuff that indicates whether or we move in or out a collision avoidance mode
-      */
-      if (!RISE_RED) {
-        RISE_RED = true;
-        FALL_RED = false;
-      }
-      if (RISE_RED && !timer_start) {
-        coll_avoid_start = millis();
-        timer_start = true;
-      }
     }
 
     else {                                            //if nothing is within the threshold move in this statement
       digitalWrite(LED_RED, LOW);
       digitalWrite(LED_BLUE, HIGH);                   //burn blue light
       coll_block = false;                             //set global variable to false
-      if (RISE_RED && !FALL_RED) {                    //do stuff on the rising falling of collision avoidance mode
-        RISE_RED = false;
-        FALL_RED = true;
-      }}
+      }
 }
 
 
@@ -153,25 +142,6 @@ void coll_avoid_baitenberg() {
 
 
 
-void fix_radio() {
-  // function to empty the buffer from the radio and handle any errors, I have not tested the failure detection yet......
-  int buffrx = 0;
-  int bufftx = 0;
-  if (radio.failureDetected) {
-    radio.setDataRate(RF24_1MBPS);
-    radio.setChannel(100);
-    radio.setRetries(0, 0);
-    radio.setPALevel(RF24_PA_LOW);
-    network.begin(this_rov); /*node address*/
-    SerialUSB.println("failure detected, restarting radio...");
-  }
-  bufftx = radio.isFifo(true);
-  buffrx = radio.isFifo(true);
-  if (buffrx == 2) { SerialUSB.println("rx buffer full"); }
-  if (bufftx == 2) { SerialUSB.println("tx buffer full"); }
-  radio.flush_rx();
-  radio.flush_tx();
-}
 
 
 
@@ -193,20 +163,6 @@ void send_Base() {
 
 
 
-bool checkStart() {
-  //Robots will only start when a certain message is received from the base station.
-  network.update();
-  if (network.available()) {
-    // SerialUSB.println("read Network");
-    RF24NetworkHeader header;
-    message_tof initM;
-    network.read(header, &initM, sizeof(message_tof));
-  
-  } else {
-    SerialUSB.println("No Network Start!");
-  }
-  return false;
-}
 
 void setup() {
 
@@ -300,31 +256,15 @@ void setup() {
   radio.setPALevel(RF24_PA_LOW);
   network.begin(this_rov); /*node address*/
 
-  bool startExperiment = true;
-  //Wait for start command of the base station
-  while (!startExperiment) {
-    SerialUSB.println("waiting for start");
-    if (checkStart()) {
-      startExperiment = true;
-    }
-  }
+
 
 
 }
 
 void loop() {
-  /*
-  The random walk has the following steps
-  1. do a random walk
-  2. measure the energy at that location
-  3. send it to the base station
-  4. increment beta distribution
-  5. send belief to other robots
-  */
-
 
   //doRandomWalk();
-  coll_avoid_baitenberg();
+  coll_avoid();
   network.update();
 
 
