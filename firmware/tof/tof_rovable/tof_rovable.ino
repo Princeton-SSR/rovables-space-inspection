@@ -22,7 +22,7 @@ const uint16_t base = 00; // address of base station
 
 // Parameters used in the ToF Collision Avoidance
 int caThresh = 50; 
-bool coll_block = false;
+bool nearObs = false;
 
 int16_t distance_r = 0;
 int16_t distance_l = 0;
@@ -58,10 +58,7 @@ int SUM_R = 0;
 int READINGS_R[WINDOW_SIZE_R];
 int AVERAGED_R = 0;
 
-bool RISE_RED = false;
-bool FALL_RED = false;
-unsigned long coll_avoid_start = 0;
-bool timer_start = false;
+
 
 void LowPassFilterTof(){
     //Moving average filters on readings
@@ -92,12 +89,7 @@ void LowPassFilterTof(){
     distance_r = SUM_R / WINDOW_SIZE_R;
 }
 
-
-void coll_avoid() {
-  /*
-  Collision avoidance function which can be called at any time (non-blocking) it sets global variables that indicate whether or not something is in front of the rover
-  */
-
+bool isNearObs(){
   //Booleans to state if something is within the threshold left middle or right
   bool bool_m = false;
   bool bool_l = false;
@@ -119,35 +111,36 @@ void coll_avoid() {
     LowPassFilterTof();
   } 
 
-    // all code below is action on coll avoid sensor data, so measure it
 
-    if (bool_l || bool_r || bool_m) {               //if something is within the threshold move in this statement
-      send_Base();
-      digitalWrite(LED_RED, HIGH);                  //put red light high
-      digitalWrite(LED_BLUE, LOW);
-      coll_block = true;                            //set global variable true "I see something"
-        //do similar thing on the left
+  if (bool_l || bool_r || bool_m) {               //if something is within the threshold move in this statement
+    //send_tof_base();
+    digitalWrite(LED_RED, HIGH);                  //put red light high
+    digitalWrite(LED_BLUE, LOW);
+    nearObs = true;                            //set global variable true "I see something"
+      //do similar thing on the left
 
-    }
+  }
 
-    else {                                            //if nothing is within the threshold move in this statement
-      digitalWrite(LED_RED, LOW);
-      digitalWrite(LED_BLUE, HIGH);                   //burn blue light
-      coll_block = false;                             //set global variable to false
-      }
+  else {                                            //if nothing is within the threshold move in this statement
+    digitalWrite(LED_RED, LOW);
+    digitalWrite(LED_BLUE, HIGH);                   //burn blue light
+    nearObs = false;                             //set global variable to false
+  }
+
+  return nearObs; 
 }
 
-
-
-
-
-
-
-
-
+void coll_avoid() {
+  if (isNearObs()){
+    send_tof_base(); 
+    moveBackward(75, 75); 
+    delay(1000); 
+    runMotor(0,0); 
+  }
+}
 
 // Send message to base station
-void send_Base() {
+void send_tof_base() {
   //send the message to the base station
   bool ok = false;
   network.update();
@@ -162,25 +155,7 @@ void send_Base() {
 }
 
 
-
-
-void setup() {
-
-  randomSeed(this_rov);
-  SerialUSB.begin(115200);
-  delay(2000);
-  SerialUSB.println("Starting Rovable");
-  Wire.begin();
-  Wire.setClock(400000);
-  pinMode(M1_DIR, OUTPUT);
-  pinMode(M1_PWM, OUTPUT);
-  pinMode(M2_PWM, OUTPUT);
-  pinMode(M2_DIR, OUTPUT);
-  pinMode(ENC1_INT, INPUT);
-  pinMode(ENC2_INT, INPUT);
-  pinMode(ENC1_LED, OUTPUT);
-  pinMode(ENC2_LED, OUTPUT);
-
+void setupTof(){
   // Disable left time of flight sensor to set address of right
   pinMode(TX_GPIO, OUTPUT);
   digitalWrite(TX_GPIO, LOW);
@@ -239,6 +214,41 @@ void setup() {
   tof_right.read();
   tof_middle.read();
 
+}
+
+// All the motions 
+void runMotor(int rightSpeed, int leftSpeed) {
+  analogWrite(M1_PWM, rightSpeed);
+  analogWrite(M2_PWM, leftSpeed);
+}
+int moveBackward(int rightSpeed, int leftSpeed) {
+  digitalWrite(M1_DIR, 1);
+  digitalWrite(M2_DIR, 0);
+
+  runMotor(rightSpeed, leftSpeed);
+  return 2; 
+}
+
+void setup() {
+
+  randomSeed(this_rov);
+  SerialUSB.begin(115200);
+  delay(2000);
+  SerialUSB.println("Starting Rovable");
+  Wire.begin();
+  Wire.setClock(400000);
+  pinMode(M1_DIR, OUTPUT);
+  pinMode(M1_PWM, OUTPUT);
+  pinMode(M2_PWM, OUTPUT);
+  pinMode(M2_DIR, OUTPUT);
+  pinMode(ENC1_INT, INPUT);
+  pinMode(ENC2_INT, INPUT);
+  pinMode(ENC1_LED, OUTPUT);
+  pinMode(ENC2_LED, OUTPUT);
+
+  
+  setupTof(); 
+  
   mpu.begin();
   mpu.setAccelerometerRange(MPU6050_RANGE_2_G);
   mpu.setGyroRange(MPU6050_RANGE_1000_DEG);
@@ -262,11 +272,6 @@ void setup() {
 }
 
 void loop() {
-
-  //doRandomWalk();
-  coll_avoid();
+  coll_avoid(); 
   network.update();
-
-
-
 }
