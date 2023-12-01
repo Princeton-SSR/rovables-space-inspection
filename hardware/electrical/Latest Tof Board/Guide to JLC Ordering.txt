@@ -1,0 +1,3 @@
+To order the expansion board, upload the zip jlc_order_rev4. The pick and place files are rovables_expansion_bom.csv and Pick Place for expansion. 
+
+To order the Tof board, try the tof_panelization_10x_rev2 zip. The pick and place files are Pick Place for tof_panelization_10x.csv and ToF_Board_BOM. For this, you need to set the thickness to be 0.8mm and you need to rotate the components in the JLC view by 180 degrees. 

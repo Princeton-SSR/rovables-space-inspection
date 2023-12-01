@@ -1,0 +1,16 @@
+Added Component: Designator=P7(BB_WIRE_TEST_TH)
+Added Component: Designator=P8(BB_WIRE_TEST_TH)
+Added Component: Designator=P9(BB_WIRE_TEST_TH)
+Added Component: Designator=P10(BB_WIRE_TEST_TH)
+Added Pin To Net: NetName=VCC Pin=P8-1
+Added Pin To Net: NetName=GND Pin=P10-1
+Added Pin To Net: NetName=RX Pin=J1-14
+Added Pin To Net: NetName=RX Pin=P9-1
+Added Net: Name=RX
+Added Pin To Net: NetName=TX Pin=J1-12
+Added Pin To Net: NetName=TX Pin=P7-1
+Added Net: Name=TX
+Added Member To Class: ClassName=expansion Member=Component P7 BB_TEST_TH
+Added Member To Class: ClassName=expansion Member=Component P8 BB_TEST_TH
+Added Member To Class: ClassName=expansion Member=Component P9 BB_TEST_TH
+Added Member To Class: ClassName=expansion Member=Component P10 BB_TEST_TH

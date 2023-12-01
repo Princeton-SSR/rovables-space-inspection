@@ -1,0 +1,9 @@
+Remove Pin=P6-1 From Net=VCC
+Remove Pin=P6-2 From Net=GND
+Remove Pin=P6-3 From Net=SDA
+Remove Pin=P6-4 From Net=SCL
+Change Component Footprint: Designator=P1 Old Footprint=vertical_4pos_conn _s_square New Footprint=vertical_4pos_conn _s
+Change Component Footprint: Designator=P2 Old Footprint=vertical_4pos_conn _s_square New Footprint=vertical_4pos_conn _s
+Change Component Footprint: Designator=P3 Old Footprint=vertical_4pos_conn _s_square New Footprint=vertical_4pos_conn _s
+Change Component Footprint: Designator=P4 Old Footprint=vertical_4pos_conn _s_square New Footprint=vertical_4pos_conn _s
+Change Component Footprint: Designator=P5 Old Footprint=vertical_4pos_conn _s_square New Footprint=vertical_4pos_conn _s

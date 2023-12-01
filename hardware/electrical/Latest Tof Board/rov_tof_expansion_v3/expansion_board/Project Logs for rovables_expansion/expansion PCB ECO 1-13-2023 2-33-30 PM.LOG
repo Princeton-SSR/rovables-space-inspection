@@ -1,0 +1,20 @@
+Removed Pin From Net: NetName=VCC Pin=P7-1
+Removed Pin From Net: NetName=GND Pin=P7-2
+Removed Pin From Net: NetName=SDA Pin=P7-3
+Removed Pin From Net: NetName=SCL Pin=P7-4
+Removed Member From Class: ClassName=expansion Member=P7
+Change Footprint: Cannot match pads with new footprint in component :P1 Footprint:vertical_4pos_conn _s_square
+Change Footprint: Cannot match pads with new footprint in component :P2 Footprint:vertical_4pos_conn _s_square
+Change Footprint: Cannot match pads with new footprint in component :P3 Footprint:vertical_4pos_conn _s_square
+Change Footprint: Cannot match pads with new footprint in component :P4 Footprint:vertical_4pos_conn _s_square
+Change Footprint: Cannot match pads with new footprint in component :P5 Footprint:vertical_4pos_conn _s_square
+Added Component: Designator=P6(vertical_4pos_conn _s_square)
+Added Pin To Net: NetName=VCC Pin=P6-1
+Added Pin To Net: NetName=VCC Pin=P6-1
+Added Pin To Net: NetName=GND Pin=P6-2
+Added Pin To Net: NetName=GND Pin=P6-2
+Added Pin To Net: NetName=SDA Pin=P6-3
+Added Pin To Net: NetName=SDA Pin=P6-3
+Added Pin To Net: NetName=SCL Pin=P6-4
+Added Pin To Net: NetName=SCL Pin=P6-4
+Added Member To Class: ClassName=expansion Member=Component P6 vertical_4pos_conn

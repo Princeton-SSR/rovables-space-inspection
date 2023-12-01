@@ -1,0 +1,4 @@
+Added Component: Designator=P3(vertical_4pos_conn _s)
+Added Component: Designator=P5(vertical_4pos_conn)
+Added Member To Class: ClassName=expansion Member=Component P3 vertical_4pos_conn
+Added Member To Class: ClassName=expansion Member=Component P5 vertical_4pos_conn

@@ -1,0 +1,6 @@
+Added Component: Designator=P11(BB_WIRE_TEST_TH)
+Added Component: Designator=P12(BB_WIRE_TEST_TH)
+Added Pin To Net: NetName=SCL Pin=P11-1
+Added Pin To Net: NetName=SDA Pin=P12-1
+Added Member To Class: ClassName=expansion Member=Component P11 BB_TEST_TH
+Added Member To Class: ClassName=expansion Member=Component P12 BB_TEST_TH

@@ -1,0 +1,25 @@
+Added Component: Designator=P?(DF12 20 POS)
+Add component (AddParameter): Name = "digikey part number"; Value = "H11743CT-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "manufacturer"; Value = "Hirose Electric Co Ltd"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "manufacturer part number"; Value = "DF12D(4.0)-20DP-0.5V(81)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "H11743CT-ND"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=RESET Pin=P?-1
+Added Pin To Net: NetName=RESET Pin=P?-1
+Added Pin To Net: NetName=RESET Pin=P?-1
+Added Pin To Net: NetName=5V Pin=P?-2
+Added Pin To Net: NetName=SWCLK Pin=P?-3
+Added Pin To Net: NetName=SWDIO Pin=P?-5
+Added Pin To Net: NetName=SDA Pin=P?-7
+Added Pin To Net: NetName=SCL Pin=P?-9
+Added Pin To Net: NetName=VCC Pin=P?-11
+Added Pin To Net: NetName=GND Pin=P?-20
+Added Member To Class: ClassName=tof1 Member=Component C?_tof1 (C?) C0402C104K8PACTU
+Added Member To Class: ClassName=tof2 Member=Component C?_tof2 (C?) C0402C104K8PACTU
+Added Member To Class: ClassName=tof3 Member=Component C?_tof3 (C?) C0402C104K8PACTU
+Added Member To Class: ClassName=tof4 Member=Component C?_tof4 (C?) C0402C104K8PACTU
+Added Member To Class: ClassName=tof5 Member=Component C?_tof5 (C?) C0402C104K8PACTU
+Added Member To Class: ClassName=tof6 Member=Component C?_tof6 (C?) C0402C104K8PACTU
+Added Member To Class: ClassName=tof7 Member=Component C?_tof7 (C?) C0402C104K8PACTU
+Added Member To Class: ClassName=tof8 Member=Component C?_tof8 (C?) C0402C104K8PACTU
+Added Member To Class: ClassName=expansion Member=Component P? CONN HEADER 20POS
